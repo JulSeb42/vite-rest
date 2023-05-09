@@ -18,14 +18,14 @@ define COMPONENT_FILE
 
 import { } from "tsx-library-julseb"
 
-import * as Styles from "components/$(name)/styles"
+import { Styled$(name) } from "components/$(name)/styles"
 import type { $(name)Props } from "components/$(name)/types"
 
-export const $(name) = ({ as, ...rest }: $(name)Props) => {
+export const $(name) = ({ }: $(name)Props) => {
 	return (
-		<Styles.Styled$(name) as={as} {...rest}>
+		<Styled$(name)>
 
-		</Styles.Styled$(name)>
+		</Styled$(name)>
 	)
 }
 endef
@@ -44,10 +44,8 @@ endef
 define TYPES_FILE
 /*=============================================== $(name) types ===============================================*/
 
-import type { HTMLAttributes, ElementType } from "react"
+export interface $(name)Props {
 
-export interface $(name)Props extends HTMLAttributes<HTMLElement> {
-    as?: ElementType
 }
 endef
 
@@ -73,6 +71,30 @@ export const $(pageName) = () => {
 }
 endef
 
+define ROUTE_FILE
+/*=============================================== $(routeName) routes ===============================================*/
+
+import { Router } from "express"
+
+const router = Router()
+
+export default router
+endef
+
+define MODEL_PAGE
+/*=============================================== $(modelName) model ===============================================*/
+
+import { Schema, model } from "mongoose"
+
+const $(modelName)Schema = new Schema(
+    {
+    },
+    { timestamps: true }
+)
+
+export const $(modelName)Model = model("$(modelName)", $(modelName)Schema)
+endef
+
 component:
 	mkdir client/src/components/$(name)
 	touch client/src/components/$(name)/index.ts
@@ -92,3 +114,12 @@ page:
 	touch client/src/pages/$(pageName)/$(pageName).tsx
 	@echo '$(subst $(newline),\n,${PAGE_INDEX})' > client/src/pages/$(pageName)/index.ts
 	@echo '$(subst $(newline),\n,${PAGE_FILE})' > client/src/pages/$(pageName)/$(pageName).tsx
+
+route:
+	touch server/routes/$(routeName).ts
+	@echo '$(subst $(newline),\n,${ROUTE_FILE})' > server/routes/$(routeName).ts
+
+model:
+	touch server/models/$(modelName).model.ts
+	@echo '$(subst $(newline),\n,${MODEL_PAGE})' > server/models/$(modelName).model.ts
+	@echo 'export * from "./$(modelName).model"' >> server/models/index.ts

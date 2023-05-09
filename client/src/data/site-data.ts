@@ -1,7 +1,7 @@
 /*=============================================== Site data ===============================================*/
 
 export const siteData = {
-    name: "App name",
+    name: "Vite Rest App",
     favicon: "/vite.svg",
     email: "",
     author: "",
