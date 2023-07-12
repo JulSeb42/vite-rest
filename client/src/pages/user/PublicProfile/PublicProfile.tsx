@@ -19,7 +19,7 @@ export const PublicProfile = () => {
     const user: UserType = response?.data
 
     return (
-        <Page title={user?.fullName}>
+        <Page title={loading ? "Loading" : user ? user?.fullName : "Error"}>
             <UserHeader user={user} isLoading={loading} error={error} />
         </Page>
     )

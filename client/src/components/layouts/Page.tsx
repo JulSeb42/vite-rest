@@ -1,10 +1,6 @@
 /*=============================================== Page ===============================================*/
 
-import { useContext } from "react"
 import { Wrapper, Main, PageLoading } from "tsx-library-julseb"
-
-import { AuthContext } from "context"
-import type { AuthContextType } from "context/types"
 
 import { Helmet } from "components/layouts/Helmet"
 import { Header } from "components/layouts/Header"
@@ -21,14 +17,10 @@ export const Page = ({
     noWrapper,
     isLoading,
     template = "1col",
-}: Props) => {
-    const { isLoading: isApiLoading } = useContext(
-        AuthContext
-    ) as AuthContextType
+}: PageProps) => {
+    if (isLoading) return <PageLoading />
 
-    return isApiLoading || isLoading ? (
-        <PageLoading />
-    ) : (
+    return (
         <>
             <Helmet
                 title={title}
@@ -37,26 +29,35 @@ export const Page = ({
                 cover={cover}
             />
 
-            {!isLoading && <Header />}
+            {isLoading ? (
+                <PageLoading />
+            ) : (
+                <>
+                    <Header />
 
-            {!noWrapper ? (
-                <Wrapper>
-                    {template === "1col" ? (
-                        <Main minHeight="calc(100vh - 56px)" size={mainWidth}>
-                            {children}
-                        </Main>
+                    {!noWrapper ? (
+                        <Wrapper>
+                            {template === "1col" ? (
+                                <Main
+                                    minHeight="calc(100vh - 56px)"
+                                    size={mainWidth}
+                                >
+                                    {children}
+                                </Main>
+                            ) : (
+                                children
+                            )}
+                        </Wrapper>
                     ) : (
                         children
                     )}
-                </Wrapper>
-            ) : (
-                children
+                </>
             )}
         </>
     )
 }
 
-interface Props extends HelmetProps {
+interface PageProps extends HelmetProps {
     children?: any
     mainWidth?: "default" | "large" | "form"
     template?: "1col" | "2cols" | "3cols"

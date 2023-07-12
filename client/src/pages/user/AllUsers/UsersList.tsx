@@ -1,20 +1,11 @@
 /*=============================================== UsersList ===============================================*/
 
-import {
-    Text,
-    Grid,
-    uuid,
-    useFetch,
-    generateNumbers,
-    Skeleton,
-    SkeletonCard,
-    SkeletonShine,
-} from "tsx-library-julseb"
 import type { AxiosResponse } from "axios"
+import { useFetch, Text, Grid, generateNumbers } from "tsx-library-julseb"
 
 import { userService } from "api"
 
-import { UserCard } from "components"
+import { UserCard, UserCardSkeleton } from "components"
 
 import type { UserType } from "types"
 
@@ -24,31 +15,7 @@ export const UsersList = () => {
     )
     const users: UserType[] | null = response?.data
 
-    if (loading)
-        return (
-            <Grid col={3} gap="s">
-                {generateNumbers(0, 4)?.map(n => (
-                    <SkeletonCard
-                        borderRadius="m"
-                        border={{ width: 1 }}
-                        flexDirection="column"
-                        gap="xs"
-                        alignItems="center"
-                        justifyContent="center"
-                        padding="s"
-                        key={n}
-                    >
-                        <Skeleton
-                            width={32}
-                            height={32}
-                            borderRadius="circle"
-                        />
-                        <Skeleton width="70%" height={24} borderRadius="s" />
-                        <SkeletonShine />
-                    </SkeletonCard>
-                ))}
-            </Grid>
-        )
+    if (loading) return <UsersListSkeleton />
 
     if (error) return <Text>Error while fetching users: {error}</Text>
 
@@ -56,8 +23,18 @@ export const UsersList = () => {
 
     return (
         <Grid col={3} gap="s">
-            {users?.map(user => (
-                <UserCard user={user} key={uuid()} />
+            {users.map(user => (
+                <UserCard user={user} key={user._id} />
+            ))}
+        </Grid>
+    )
+}
+
+const UsersListSkeleton = () => {
+    return (
+        <Grid col={3} gap="s">
+            {generateNumbers(0, 4).map(n => (
+                <UserCardSkeleton key={n} />
             ))}
         </Grid>
     )

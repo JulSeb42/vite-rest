@@ -1,6 +1,6 @@
 /*=============================================== Helmet ===============================================*/
 
-import { Helmet as Container } from "tsx-library-julseb"
+import { Helmet as Head } from "tsx-library-julseb"
 
 import { siteData } from "data"
 
@@ -11,7 +11,7 @@ export const Helmet = ({
     cover,
 }: HelmetProps) => {
     return (
-        <Container
+        <Head
             title={`${title} | ${siteData.name}`}
             description={description}
             keywords={[siteData.keywords, keywords]}

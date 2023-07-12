@@ -1,17 +1,17 @@
-/*=============================================== ForgotPassword ===============================================*/
+/*=============================================== ForgotPasswordForm ===============================================*/
 
 import { useState } from "react"
 import type { ChangeEvent, FormEvent } from "react"
-import { Text, Form, Input } from "tsx-library-julseb"
+import { Form, Input } from "tsx-library-julseb"
 import { useNavigate } from "react-router-dom"
 
 import { authService } from "api"
 
-import { Page, ErrorMessage } from "components"
+import { ErrorMessage } from "components"
 
 import type { ErrorMessageType } from "types"
 
-export const ForgotPassword = () => {
+export const ForgotPasswordForm = () => {
     const navigate = useNavigate()
 
     const [email, setEmail] = useState("")
@@ -31,14 +31,7 @@ export const ForgotPassword = () => {
     }
 
     return (
-        <Page title="I forgot my password" mainWidth="form">
-            <Text tag="h1">I forgot my password</Text>
-
-            <Text>
-                Please enter your email address, we will send you a link to
-                reset your password.
-            </Text>
-
+        <>
             <Form
                 onSubmit={handleSubmitForm}
                 buttonPrimary="Send"
@@ -54,6 +47,6 @@ export const ForgotPassword = () => {
             </Form>
 
             <ErrorMessage error={errorMessage} />
-        </Page>
+        </>
     )
 }

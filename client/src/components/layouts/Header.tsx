@@ -73,7 +73,10 @@ export const Header = () => {
         )
 
     return (
-        <Container logo={{ text: siteData.name }} navMobileVariant="drawer">
+        <Container
+            logo={{ text: siteData.name, to: "/" }}
+            navMobileVariant="drawer"
+        >
             {navLinksFunc(baseLinks)}
 
             {isLoggedIn ? navLinksFunc(loggedInLinks) : navLinksFunc(anonLinks)}

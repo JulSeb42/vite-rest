@@ -1,17 +1,17 @@
 /*=============================================== Auth context ===============================================*/
 
 import { useState, useEffect, createContext } from "react"
-
 import { authService } from "api"
-
 import type { AuthContextType } from "context/types"
 
-export const AuthContext = createContext<AuthContextType | null>(null)
+import type { UserType } from "types"
 
-export const AuthProviderWrapper = ({ children }: Props) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [isLoading, setIsLoading] = useState(true)
-    const [user, setUser] = useState(null)
+export const AuthContext = createContext<null | AuthContextType>(null)
+
+export const AuthProviderWrapper = ({ children }: AuthProviderWrapperProps) => {
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(true)
+    const [user, setUser] = useState<null | UserType>(null)
 
     const loginUser = (token: string) => {
         localStorage.setItem("authToken", token)
@@ -40,7 +40,7 @@ export const AuthProviderWrapper = ({ children }: Props) => {
                     },
                 })
                 .then(res => {
-                    const user = res.data.user
+                    const user: UserType = res.data.user
                     setUser(user)
                     setIsLoggedIn(true)
                     setIsLoading(false)
@@ -52,6 +52,7 @@ export const AuthProviderWrapper = ({ children }: Props) => {
                     setIsLoading(false)
                 })
         } else {
+            setIsLoggedIn(false)
             setIsLoading(false)
         }
     }
@@ -77,6 +78,6 @@ export const AuthProviderWrapper = ({ children }: Props) => {
     )
 }
 
-interface Props {
+interface AuthProviderWrapperProps {
     children: any
 }

@@ -8,6 +8,8 @@ import { AnonRoute } from "routes/AnonRoute"
 import { Homepage } from "pages/Homepage"
 import { NotFound } from "pages/NotFound"
 
+import { AllUsers, PublicProfile } from "pages/user"
+
 import {
     Signup,
     ThankYou,
@@ -21,39 +23,24 @@ import {
 
 import { MyAccount, EditAccount, EditPassword } from "pages/account"
 
-import { PublicProfile, AllUsers } from "pages/user"
-
 type RouteType = {
     path: string
     element: JSX.Element
-    edit?: boolean
 }
 
 const redirects: RouteType[] = [
     // {
     //     path: "",
-    //     element: <Navigate to="" />
+    //     element: <Navigate to="" />,
     // },
 ]
 
 export const routes: RouteType[] = [
-    {
-        path: "/",
-        element: <Homepage />,
-    },
-    {
-        path: "*",
-        element: <NotFound />,
-    },
+    { path: "/", element: <Homepage /> },
+    { path: "*", element: <NotFound /> },
 
-    {
-        path: "/users",
-        element: <AllUsers />,
-    },
-    {
-        path: "/users/:id",
-        element: <PublicProfile />,
-    },
+    { path: "/users", element: <AllUsers /> },
+    { path: "/users/:id", element: <PublicProfile /> },
 
     {
         path: "/signup",
@@ -63,14 +50,8 @@ export const routes: RouteType[] = [
             </AnonRoute>
         ),
     },
-    {
-        path: "/thank-you",
-        element: <ThankYou />,
-    },
-    {
-        path: "/verify/:token/:id",
-        element: <Verify />,
-    },
+    { path: "/thank-you", element: <ThankYou /> },
+    { path: "/verify/:token/:id", element: <Verify /> },
     {
         path: "/login",
         element: (
