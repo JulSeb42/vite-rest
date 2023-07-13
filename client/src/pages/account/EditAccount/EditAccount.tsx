@@ -7,6 +7,8 @@ import { Page } from "components"
 import { EditAccountForm } from "pages/account/EditAccount/EditAccountForm"
 import { DeleteAccount } from "pages/account/EditAccount/DeleteAccount"
 
+import { PATHS } from "data"
+
 export const EditAccount = () => {
     return (
         <Page title="Edit your account" mainWidth="form">
@@ -15,7 +17,7 @@ export const EditAccount = () => {
             <EditAccountForm />
 
             <Text>
-                <Link to="/my-account/edit-password">Edit your password.</Link>
+                <Link to={PATHS.EDIT_PASSWORD}>Edit your password.</Link>
             </Text>
 
             <DeleteAccount />

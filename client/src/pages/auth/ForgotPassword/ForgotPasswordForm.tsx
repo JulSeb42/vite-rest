@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom"
 import { authService } from "api"
 
 import { ErrorMessage } from "components"
+import { PATHS } from "data"
 
 import type { ErrorMessageType } from "types"
 
@@ -26,7 +27,7 @@ export const ForgotPasswordForm = () => {
 
         await authService
             .forgotPassword({ email })
-            .then(() => navigate("/login/forgot-password/email-sent"))
+            .then(() => navigate(PATHS.FORGOT_PASSWORD_SENT))
             .catch(err => setErrorMessage(err))
     }
 
@@ -35,7 +36,7 @@ export const ForgotPasswordForm = () => {
             <Form
                 onSubmit={handleSubmitForm}
                 buttonPrimary="Send"
-                buttonSecondary={{ text: "Cancel", to: "/login" }}
+                buttonSecondary={{ text: "Cancel", to: PATHS.LOGIN }}
             >
                 <Input
                     id="email"

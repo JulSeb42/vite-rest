@@ -11,6 +11,8 @@ import { userService } from "api"
 
 import { ImageUploader, ErrorMessage } from "components"
 
+import { PATHS } from "data"
+
 import type { ErrorMessageType } from "types"
 
 export const EditAccountForm = () => {
@@ -23,7 +25,7 @@ export const EditAccountForm = () => {
     const [inputs, setInputs] = useState({
         fullName: user?.fullName,
     })
-    const [avatar, setAvatar] = useState(user?.avatar || "")
+    const [avatar, setAvatar] = useState(user?.avatar!)
     const [isLoading, setIsLoading] = useState(false)
     const [errorMessage, setErrorMessage] =
         useState<ErrorMessageType>(undefined)
@@ -40,7 +42,7 @@ export const EditAccountForm = () => {
         }
 
         userService
-            .editAccount(user?._id || "", requestBody)
+            .editAccount(user?._id!, requestBody)
             .then(res => {
                 setUser(res.data.user)
                 setToken(res.data.authToken)
@@ -54,7 +56,7 @@ export const EditAccountForm = () => {
             <Form
                 onSubmit={handleSubmit}
                 buttonPrimary="Save changes"
-                buttonSecondary={{ text: "Cancel", to: "/my-account" }}
+                buttonSecondary={{ text: "Cancel", to: PATHS.MY_ACCOUNT }}
                 isLoading={isLoading}
             >
                 <Input

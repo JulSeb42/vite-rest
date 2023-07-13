@@ -11,6 +11,8 @@ import { DangerZone, ErrorMessage } from "components"
 
 import type { ErrorMessageType } from "types"
 
+import { PATHS } from "data"
+
 export const DeleteAccount = () => {
     const navigate = useNavigate()
 
@@ -21,10 +23,10 @@ export const DeleteAccount = () => {
 
     const handleDelete = () => {
         userService
-            .deleteAccount(user?._id || "")
+            .deleteAccount(user?._id!)
             .then(() => {
                 logoutUser()
-                navigate("/goodbye")
+                navigate(PATHS.GOODBYE)
             })
             .catch(err => setErrorMessage(err))
     }

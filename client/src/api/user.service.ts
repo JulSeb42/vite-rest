@@ -1,26 +1,27 @@
 /*=============================================== User service ===============================================*/
 
 import { http } from "api"
+import { SERVER_PATHS } from "data"
 
 class UserService {
     allUsers() {
-        return http.get("/users/all-users")
+        return http.get(`${SERVER_PATHS.USERS}/all-users`)
     }
 
     getUser(id: string) {
-        return http.get(`/users/user/${id}`)
+        return http.get(`${SERVER_PATHS.USERS}/user/${id}`)
     }
 
     editAccount(id: string, data: any) {
-        return http.put(`/users/edit-account/${id}`, data)
+        return http.put(`${SERVER_PATHS.USERS}/edit-account/${id}`, data)
     }
 
     editPassword(id: string, data: any) {
-        return http.put(`/users/edit-password/${id}`, data)
+        return http.put(`${SERVER_PATHS.USERS}/edit-password/${id}`, data)
     }
 
     deleteAccount(id: string) {
-        return http.delete(`/users/delete-account/${id}`)
+        return http.delete(`${SERVER_PATHS.USERS}/delete-account/${id}`)
     }
 }
 

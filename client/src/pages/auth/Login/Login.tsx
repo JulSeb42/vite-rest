@@ -6,6 +6,8 @@ import { Link } from "react-router-dom"
 import { Page } from "components"
 import { LoginForm } from "pages/auth/Login/LoginForm"
 
+import { PATHS } from "data"
+
 export const Login = () => {
     return (
         <Page title="Log in" mainWidth="form">
@@ -14,11 +16,12 @@ export const Login = () => {
             <LoginForm />
 
             <Text>
-                <Link to="/login/forgot-password">I forgot my password.</Link>
+                <Link to={PATHS.FORGOT_PASSWORD}>I forgot my password.</Link>
             </Text>
 
             <Text>
-                You don't have an account? <Link to="/signup">Sign up</Link>.
+                You don't have an account?{" "}
+                <Link to={PATHS.SIGNUP}>Sign up</Link>.
             </Text>
         </Page>
     )

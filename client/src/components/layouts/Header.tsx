@@ -13,7 +13,7 @@ import type { ThemeContextProps } from "tsx-library-julseb/types"
 import { AuthContext } from "context"
 import type { AuthContextType } from "context/types"
 
-import { siteData } from "data"
+import { SITE_DATA, PATHS } from "data"
 
 import type { NavLinkType } from "types"
 
@@ -28,30 +28,30 @@ export const Header = () => {
     const baseLinks: NavLinkType[] = [
         {
             text: "Home",
-            to: "/",
+            to: PATHS.ROOT,
             end: true,
         },
         {
             text: "All users",
-            to: "/users",
+            to: PATHS.USERS,
         },
     ]
 
     const anonLinks: NavLinkType[] = [
         {
             text: "Log in",
-            to: "/login",
+            to: PATHS.LOGIN,
         },
         {
             text: "Sign up",
-            to: "/signup",
+            to: PATHS.SIGNUP,
         },
     ]
 
     const loggedInLinks: NavLinkType[] = [
         {
             text: "My account",
-            to: "/my-account",
+            to: PATHS.MY_ACCOUNT,
         },
         {
             text: "Log out",
@@ -74,7 +74,7 @@ export const Header = () => {
 
     return (
         <Container
-            logo={{ text: siteData.name, to: "/" }}
+            logo={{ text: SITE_DATA.NAME, to: PATHS.ROOT }}
             navMobileVariant="drawer"
         >
             {navLinksFunc(baseLinks)}

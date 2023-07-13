@@ -1,16 +1,16 @@
 /*=============================================== Site data ===============================================*/
 
-export const siteData = {
-    name: "Vite Rest App",
-    favicon: "/vite.svg",
-    email: "",
-    author: "",
-    year: "",
+export const SITE_DATA = {
+    NAME: "Vite Rest App",
+    FAVICON: "/vite.svg",
+    EMAIL: "",
+    AUTHOR: "",
+    YEAR: "",
 
     // Meta
-    description: "",
-    cover: "",
-    type: "",
-    language: "en_EN",
-    keywords: [],
+    DESCRIPTION: "",
+    COVER: "",
+    TYPE: "",
+    LANGUAGE: "en_EN",
+    KEYWORDS: [],
 }

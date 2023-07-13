@@ -14,7 +14,7 @@ import { Page, ErrorMessage } from "components"
 
 import type { ErrorMessageType } from "types"
 
-import { commonTexts } from "data"
+import { COMMON_TEXT, PATHS } from "data"
 
 export const EditPassword = () => {
     const { user, setUser, setToken } = useContext(
@@ -43,7 +43,7 @@ export const EditPassword = () => {
         e.preventDefault()
 
         userService
-            .editPassword(user?._id || "", { password })
+            .editPassword(user?._id!, { password })
             .then(res => {
                 setUser(res.data.user)
                 setToken(res.data.authToken)
@@ -59,15 +59,16 @@ export const EditPassword = () => {
             <Form
                 onSubmit={handleSubmit}
                 buttonPrimary="Save"
-                buttonSecondary={{ text: "Cancel", to: "/my-account" }}
+                buttonSecondary={{ text: "Cancel", to: PATHS.MY_ACCOUNT }}
             >
                 <Input
                     id="password"
                     password
                     label="New password"
                     helperBottom={{
-                        text: validation ? commonTexts.passwordNotPassed : "",
-                        icon: validation && commonTexts.iconPasswordNotPassed,
+                        text: validation ? COMMON_TEXT.PASSWORD_NOT_PASSED : "",
+                        icon:
+                            validation && COMMON_TEXT.ICON_PASSWORD_NOT_PASSED,
                         iconColor: "danger",
                     }}
                     validation={validation}

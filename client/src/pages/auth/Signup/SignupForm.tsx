@@ -12,6 +12,8 @@ import { authService } from "api"
 
 import { ErrorMessage } from "components"
 
+import { PATHS } from "data"
+
 import type { ErrorMessageType } from "types"
 
 export const SignupForm = () => {
@@ -55,7 +57,7 @@ export const SignupForm = () => {
             })
             .then(res => {
                 loginUser(res.data.authToken)
-                navigate("/thank-you")
+                navigate(PATHS.THANK_YOU)
             })
             .catch(err => setErrorMessage(err))
     }

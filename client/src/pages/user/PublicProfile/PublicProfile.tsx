@@ -14,7 +14,7 @@ export const PublicProfile = () => {
     const { id } = useParams<{ id: string }>()
 
     const { response, error, loading } = useFetch<AxiosResponse>(
-        userService.getUser(id || "")
+        userService.getUser(id!)
     )
     const user: UserType = response?.data
 

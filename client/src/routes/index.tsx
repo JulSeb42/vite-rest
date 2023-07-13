@@ -2,6 +2,8 @@
 
 // import { Navigate } from "react-router-dom"
 
+import { PATHS } from "data"
+
 import { ProtectedRoute } from "routes/ProtectedRoute"
 import { AnonRoute } from "routes/AnonRoute"
 
@@ -36,24 +38,24 @@ const redirects: RouteType[] = [
 ]
 
 export const routes: RouteType[] = [
-    { path: "/", element: <Homepage /> },
+    { path: PATHS.ROOT, element: <Homepage /> },
     { path: "*", element: <NotFound /> },
 
-    { path: "/users", element: <AllUsers /> },
-    { path: "/users/:id", element: <PublicProfile /> },
+    { path: PATHS.USERS, element: <AllUsers /> },
+    { path: PATHS.USER(), element: <PublicProfile /> },
 
     {
-        path: "/signup",
+        path: PATHS.SIGNUP,
         element: (
             <AnonRoute>
                 <Signup />
             </AnonRoute>
         ),
     },
-    { path: "/thank-you", element: <ThankYou /> },
-    { path: "/verify/:token/:id", element: <Verify /> },
+    { path: PATHS.THANK_YOU, element: <ThankYou /> },
+    { path: PATHS.VERIFY, element: <Verify /> },
     {
-        path: "/login",
+        path: PATHS.LOGIN,
         element: (
             <AnonRoute>
                 <Login />
@@ -61,7 +63,7 @@ export const routes: RouteType[] = [
         ),
     },
     {
-        path: "/login/forgot-password",
+        path: PATHS.FORGOT_PASSWORD,
         element: (
             <AnonRoute>
                 <ForgotPassword />
@@ -69,7 +71,7 @@ export const routes: RouteType[] = [
         ),
     },
     {
-        path: "/login/forgot-password/email-sent",
+        path: PATHS.FORGOT_PASSWORD_SENT,
         element: (
             <AnonRoute>
                 <ForgotSent />
@@ -77,7 +79,7 @@ export const routes: RouteType[] = [
         ),
     },
     {
-        path: "/reset-password/:token/:id",
+        path: PATHS.RESET_PASSWORD,
         element: (
             <AnonRoute>
                 <ResetPassword />
@@ -85,7 +87,7 @@ export const routes: RouteType[] = [
         ),
     },
     {
-        path: "/goodbye",
+        path: PATHS.GOODBYE,
         element: (
             <AnonRoute>
                 <Goodbye />
@@ -94,7 +96,7 @@ export const routes: RouteType[] = [
     },
 
     {
-        path: "/my-account",
+        path: PATHS.MY_ACCOUNT,
         element: (
             <ProtectedRoute>
                 <MyAccount />
@@ -102,7 +104,7 @@ export const routes: RouteType[] = [
         ),
     },
     {
-        path: "/my-account/edit",
+        path: PATHS.EDIT_ACCOUNT,
         element: (
             <ProtectedRoute>
                 <EditAccount />
@@ -110,7 +112,7 @@ export const routes: RouteType[] = [
         ),
     },
     {
-        path: "/my-account/edit-password",
+        path: PATHS.EDIT_PASSWORD,
         element: (
             <ProtectedRoute>
                 <EditPassword />

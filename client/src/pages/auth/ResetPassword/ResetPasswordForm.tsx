@@ -17,7 +17,7 @@ import { authService, userService } from "api"
 
 import { ErrorMessage } from "components"
 
-import { commonTexts } from "data"
+import { COMMON_TEXT, PATHS } from "data"
 
 import type { UserType } from "types"
 
@@ -77,7 +77,7 @@ export const ResetPasswordForm = () => {
                 resetToken: token,
                 id,
             })
-            .then(() => navigate("/login"))
+            .then(() => navigate(PATHS.LOGIN))
             .catch(err => setErrorMessage(err))
     }
 
@@ -99,8 +99,9 @@ export const ResetPasswordForm = () => {
                     password
                     label="New password"
                     helperBottom={{
-                        text: validation ? commonTexts.passwordNotPassed : "",
-                        icon: validation && commonTexts.iconPasswordNotPassed,
+                        text: validation ? COMMON_TEXT.PASSWORD_NOT_PASSED : "",
+                        icon:
+                            validation && COMMON_TEXT.ICON_PASSWORD_NOT_PASSED,
                         iconColor: "danger",
                     }}
                     value={password}
