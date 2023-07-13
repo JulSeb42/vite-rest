@@ -18,8 +18,6 @@ export const Page = ({
     isLoading,
     template = "1col",
 }: PageProps) => {
-    if (isLoading) return <PageLoading />
-
     return (
         <>
             <Helmet
