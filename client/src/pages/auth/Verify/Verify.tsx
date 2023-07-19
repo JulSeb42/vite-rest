@@ -42,7 +42,6 @@ export const Verify = () => {
         }
 
         setTimeout(() => verifyUser(), 1000)
-        // eslint-disable-next-line
     }, [id, user, isLoggedIn, token])
 
     if (isLoading) return <VerifySkeleton />
