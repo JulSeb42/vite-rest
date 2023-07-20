@@ -2,7 +2,7 @@
 
 import { useContext } from "react"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import { ThemeContext, ThemeProvider } from "tsx-library-julseb"
+import { ThemeContext, ThemeProvider, PageLoading } from "tsx-library-julseb"
 import type { ThemeContextProps } from "tsx-library-julseb/types"
 
 import { routes } from "routes"
@@ -12,7 +12,10 @@ export const App = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <RouterProvider router={createBrowserRouter(routes)} />
+            <RouterProvider
+                router={createBrowserRouter(routes)}
+                fallbackElement={<PageLoading />}
+            />
         </ThemeProvider>
     )
 }
