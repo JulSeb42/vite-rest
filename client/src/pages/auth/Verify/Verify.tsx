@@ -27,22 +27,22 @@ export const Verify = () => {
         useState<ErrorMessageType>(undefined)
 
     useEffect(() => {
-        const verifyUser = () => {
+        if (isLoading) {
             if (isLoggedIn && user?._id === id && user?.verifyToken === token) {
                 authService
                     .verify({ id })
                     .then(res => {
                         setUser(res.data.user)
                         setToken(res.data.authToken)
+                        setIsLoading(false)
                     })
-                    .catch(err => setErrorMessage(err))
+                    .catch(err => {
+                        setErrorMessage(err)
+                        setIsLoading(false)
+                    })
             }
-
-            setIsLoading(false)
         }
-
-        setTimeout(() => verifyUser(), 1000)
-    }, [id, user, isLoggedIn, token])
+    }, [id, isLoading, isLoggedIn, setToken, setUser, token, user])
 
     if (isLoading) return <VerifySkeleton />
 
