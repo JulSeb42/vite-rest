@@ -1,8 +1,9 @@
 /*=============================================== Empty user ===============================================*/
 
-import type { UserType } from "types"
+import type { User } from "types"
 
-export const emptyUser: UserType = {
+export const emptyUser: User = {
+    _id: "",
     email: "",
     fullName: "",
     password: "",
@@ -10,5 +11,4 @@ export const emptyUser: UserType = {
     verifyToken: "",
     resetToken: "",
     avatar: "",
-    _id: "",
 }

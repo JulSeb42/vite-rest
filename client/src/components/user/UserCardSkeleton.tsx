@@ -2,7 +2,7 @@
 
 import { SkeletonCard, Skeleton } from "tsx-library-julseb"
 
-export const UserCardSkeleton = () => {
+export function UserCardSkeleton() {
     return (
         <SkeletonCard
             borderRadius="m"

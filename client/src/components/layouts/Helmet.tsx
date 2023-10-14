@@ -4,12 +4,12 @@ import { Helmet as Head } from "tsx-library-julseb"
 
 import { SITE_DATA } from "data"
 
-export const Helmet = ({
+export function Helmet({
     title,
     description,
     keywords,
     cover,
-}: HelmetProps) => {
+}: HelmetProps) {
     return (
         <Head
             title={`${title} | ${SITE_DATA.NAME}`}
@@ -28,6 +28,6 @@ export const Helmet = ({
 export interface HelmetProps {
     title: string
     description?: string
-    keywords?: string | string[]
+    keywords?: string | Array<string>
     cover?: string
 }

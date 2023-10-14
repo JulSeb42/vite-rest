@@ -8,11 +8,11 @@ import { useNavigate } from "react-router-dom"
 import { authService } from "api"
 
 import { ErrorMessage } from "components"
-import { PATHS } from "data"
+import { PATHS } from "routes"
 
-import type { ErrorMessageType } from "types"
+import type { ErrorMessage as ErrorMessageType } from "types"
 
-export const ForgotPasswordForm = () => {
+export function ForgotPasswordForm() {
     const navigate = useNavigate()
 
     const [email, setEmail] = useState("")

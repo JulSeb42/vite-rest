@@ -1,23 +1,18 @@
 /*=============================================== SignupForm ===============================================*/
 
-import { useState, useContext } from "react"
+import { useState } from "react"
 import type { ChangeEvent, FormEvent } from "react"
 import { useNavigate } from "react-router-dom"
 import { Form, Input, passwordRegex, getRandomAvatar } from "tsx-library-julseb"
 import type { ValidationTypes } from "tsx-library-julseb/types"
-
-import { AuthContext } from "context"
-import type { AuthContextType } from "context/types"
+import { useAuthContext } from "context"
 import { authService } from "api"
-
 import { ErrorMessage } from "components"
+import { PATHS } from "routes"
+import type { ErrorMessage as ErrorMessageType } from "types"
 
-import { PATHS } from "data"
-
-import type { ErrorMessageType } from "types"
-
-export const SignupForm = () => {
-    const { loginUser } = useContext(AuthContext) as AuthContextType
+export function SignupForm() {
+    const { loginUser } = useAuthContext()
     const navigate = useNavigate()
 
     const [inputs, setInputs] = useState({

@@ -1,15 +1,13 @@
 /*=============================================== Homepage ===============================================*/
 
-import { useContext } from "react"
 import { Text } from "tsx-library-julseb"
 
-import { AuthContext } from "context"
-import type { AuthContextType } from "context/types"
+import { useAuthContext } from "context"
 
 import { Page } from "components"
 
-export const Homepage = () => {
-    const { isLoggedIn, user } = useContext(AuthContext) as AuthContextType
+export function Homepage() {
+    const { isLoggedIn, user } = useAuthContext()
 
     return (
         <Page title="Home">

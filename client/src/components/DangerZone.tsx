@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button, Alert, Text, Flexbox } from "tsx-library-julseb"
 
-export const DangerZone = ({ texts, buttonPrimary }: DangerZoneProps) => {
+export function DangerZone({ texts, buttonPrimary }: DangerZoneProps) {
     const [isVisible, setIsVisible] = useState(false)
 
     return (

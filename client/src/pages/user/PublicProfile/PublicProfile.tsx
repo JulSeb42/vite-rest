@@ -8,15 +8,15 @@ import { userService } from "api"
 
 import { Page, UserHeader } from "components"
 
-import type { UserType } from "types"
+import type { User } from "types"
 
-export const PublicProfile = () => {
+export function PublicProfile() {
     const { id } = useParams<{ id: string }>()
 
     const { response, error, loading } = useFetch<AxiosResponse>(
         userService.getUser(id!)
     )
-    const user: UserType = response?.data
+    const user: User = response?.data
 
     return (
         <Page title={loading ? "Loading" : user ? user?.fullName : "Error"}>

@@ -1,0 +1,13 @@
+/*=============================================== {{ pascalCase name }} types ===============================================*/
+
+import type { {{#if children}}ReactNode,{{/if}}{{#if as}} ElementType,{{/if}} } from "react"
+
+export interface {{ pascalCase name }}Props {
+    "data-testid"?: string
+    {{#if children}}
+    children?: ReactNode | Array<ReactNode>
+    {{/if}}
+    {{#if as}}
+    as?: ElementType
+    {{/if}}
+}

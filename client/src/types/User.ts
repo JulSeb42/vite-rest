@@ -1,6 +1,7 @@
 /*=============================================== User ===============================================*/
 
-export type UserType = {
+export type User = {
+    _id: string
     email: string
     fullName: string
     password: string
@@ -8,5 +9,4 @@ export type UserType = {
     verifyToken: string
     resetToken?: string
     avatar: string
-    _id: string
 }

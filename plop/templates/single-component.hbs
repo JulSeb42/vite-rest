@@ -1,0 +1,29 @@
+/*=============================================== {{ pascalCase name }} ===============================================*/
+{{#unless tag}}
+
+import { Fragment } from "react"
+{{/unless}}
+{{#if components}}
+
+import { {{components}} } from "components"
+{{/if}}
+{{#if props}}
+
+interface {{ pascalCase name }}Props {
+
+}
+{{/if}}
+
+export function {{ pascalCase name }}({{#if props}}{ }{{/if}}{{#if props}}: {{ pascalCase name }}Props{{/if}}) {
+    return (
+        {{#if tag}}
+        <{{ tag }}>
+
+        </{{ tag }}>
+        {{else}}
+        <Fragment>
+
+        </Fragment>
+        {{/if}}
+    )
+}

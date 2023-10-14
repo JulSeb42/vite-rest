@@ -6,9 +6,9 @@ import { Link } from "react-router-dom"
 import { Page } from "components"
 import { LoginForm } from "pages/auth/Login/LoginForm"
 
-import { PATHS } from "data"
+import { PATHS } from "routes"
 
-export const Login = () => {
+export function Login() {
     return (
         <Page title="Log in" mainWidth="form">
             <Text tag="h1">Log in</Text>

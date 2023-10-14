@@ -24,7 +24,13 @@
         "noFallthroughCasesInSwitch": true
     },
     "include": [
-        "src"
+        "src",
+        "cypress",
+        "./node_modules/cypress",
+        "cypress/**/*.ts"
+    ],
+    "types": [
+        "cypress"
     ],
     "references": [
         {

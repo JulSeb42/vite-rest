@@ -10,22 +10,21 @@ import {
 } from "tsx-library-julseb"
 import type { ThemeContextProps } from "tsx-library-julseb/types"
 
-import { AuthContext } from "context"
-import type { AuthContextType } from "context/types"
+import { useAuthContext } from "context"
 
-import { SITE_DATA, PATHS } from "data"
+import { SITE_DATA } from "data"
+import { PATHS } from "routes"
 
-import type { NavLinkType } from "types"
+import type { NavLink as NavLinkType } from "types"
 
-export const Header = () => {
-    const { isLoggedIn, logoutUser } = useContext(
-        AuthContext
-    ) as AuthContextType
+export function Header() {
+    const { isLoggedIn, logoutUser } = useAuthContext()
+
     const { toggleTheme, selectedTheme } = useContext(
         ThemeContext
     ) as ThemeContextProps
 
-    const baseLinks: NavLinkType[] = [
+    const baseLinks: Array<NavLinkType> = [
         {
             text: "Home",
             to: PATHS.ROOT,
@@ -37,7 +36,7 @@ export const Header = () => {
         },
     ]
 
-    const anonLinks: NavLinkType[] = [
+    const anonLinks: Array<NavLinkType> = [
         {
             text: "Log in",
             to: PATHS.LOGIN,
@@ -48,7 +47,7 @@ export const Header = () => {
         },
     ]
 
-    const loggedInLinks: NavLinkType[] = [
+    const loggedInLinks: Array<NavLinkType> = [
         {
             text: "My account",
             to: PATHS.MY_ACCOUNT,
@@ -59,7 +58,7 @@ export const Header = () => {
         },
     ]
 
-    const navLinksFunc = (links: NavLinkType[]) =>
+    const navLinksFunc = (links: Array<NavLinkType>) =>
         links.map(({ text, to, onClick, end }) =>
             to ? (
                 <NavLink to={to} end={end} key={uuid()}>

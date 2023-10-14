@@ -1,19 +1,18 @@
 /*=============================================== LoginForm ===============================================*/
 
-import { useState, useContext } from "react"
+import { useState } from "react"
 import type { ChangeEvent, FormEvent } from "react"
 import { Form, Input } from "tsx-library-julseb"
 import { useNavigate } from "react-router-dom"
 
-import { AuthContext } from "context"
-import type { AuthContextType } from "context/types"
+import { useAuthContext } from "context"
 import { authService } from "api"
 
 import { ErrorMessage } from "components"
 
-export const LoginForm = () => {
+export function LoginForm() {
     const navigate = useNavigate()
-    const { loginUser } = useContext(AuthContext) as AuthContextType
+    const { loginUser } = useAuthContext()
 
     const [inputs, setInputs] = useState({
         email: "",

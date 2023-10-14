@@ -2,12 +2,10 @@
 
 import { Link } from "react-router-dom"
 import { Text } from "tsx-library-julseb"
-
 import { Page } from "components"
+import { PATHS } from "routes"
 
-import { PATHS } from "data"
-
-export const VerificationSuccess = () => {
+export function VerificationSuccess() {
     return (
         <Page title="Verify your account">
             <Text tag="h1">Your account is verifed!</Text>

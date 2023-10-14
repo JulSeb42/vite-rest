@@ -1,22 +1,21 @@
 /*=============================================== DeleteAccount ===============================================*/
 
-import { useContext, useState } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-import { AuthContext } from "context"
-import type { AuthContextType } from "context/types"
+import { useAuthContext } from "context"
 import { userService } from "api"
 
 import { DangerZone, ErrorMessage } from "components"
 
-import type { ErrorMessageType } from "types"
+import { PATHS } from "routes"
 
-import { PATHS } from "data"
+import type { ErrorMessage as ErrorMessageType } from "types"
 
-export const DeleteAccount = () => {
+export function DeleteAccount() {
     const navigate = useNavigate()
 
-    const { user, logoutUser } = useContext(AuthContext) as AuthContextType
+    const { user, logoutUser } = useAuthContext()
 
     const [errorMessage, setErrorMessage] =
         useState<ErrorMessageType>(undefined)

@@ -2,14 +2,12 @@
 
 import { Text } from "tsx-library-julseb"
 import { Link } from "react-router-dom"
-
 import { Page } from "components"
 import { EditAccountForm } from "pages/account/EditAccount/EditAccountForm"
 import { DeleteAccount } from "pages/account/EditAccount/DeleteAccount"
+import { PATHS } from "routes"
 
-import { PATHS } from "data"
-
-export const EditAccount = () => {
+export function EditAccount() {
     return (
         <Page title="Edit your account" mainWidth="form">
             <Text tag="h1">Edit your account</Text>

@@ -4,7 +4,7 @@ import { Text } from "tsx-library-julseb"
 
 import { Page } from "components"
 
-export const ThankYou = () => {
+export function ThankYou() {
     return (
         <Page title="Thank you!">
             <Text tag="h1">Thank you for creating your account!</Text>

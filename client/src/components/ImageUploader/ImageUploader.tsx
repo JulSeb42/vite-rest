@@ -7,13 +7,13 @@ import { cloudinaryService } from "api"
 
 import type { ImageUploaderProps } from "components/ImageUploader/types"
 
-export const ImageUploader = ({
+export function ImageUploader({
     img,
     id,
     setImageUrl,
     setIsLoading,
     ...rest
-}: ImageUploaderProps) => {
+}: ImageUploaderProps) {
     const handleImage = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
 

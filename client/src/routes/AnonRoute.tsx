@@ -1,19 +1,15 @@
 /*=============================================== AnonRoute ===============================================*/
 
-import { useContext } from "react"
 import { Navigate } from "react-router-dom"
 import { PageLoading } from "tsx-library-julseb"
+import { useAuthContext } from "context"
+import { PATHS } from "routes"
 
-import { AuthContext } from "context"
-import type { AuthContextType } from "context/types"
-
-import { PATHS } from "data"
-
-export const AnonRoute = ({
+export function AnonRoute({
     children,
     redirectTo = PATHS.MY_ACCOUNT,
-}: AnonRouteProps) => {
-    const { isLoggedIn, isLoading } = useContext(AuthContext) as AuthContextType
+}: AnonRouteProps) {
+    const { isLoggedIn, isLoading } = useAuthContext()
 
     return isLoading ? (
         <PageLoading />

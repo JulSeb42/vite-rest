@@ -1,17 +1,23 @@
 /*=============================================== Auth context ===============================================*/
 
-import { useState, useEffect, createContext } from "react"
+import {
+    useState,
+    useEffect,
+    createContext,
+    useContext,
+    type ReactNode,
+} from "react"
 import { authService } from "api"
 import type { AuthContextType } from "context/types"
 
-import type { UserType } from "types"
+import type { User } from "types"
 
-export const AuthContext = createContext<null | AuthContextType>(null)
+export const AuthContext = createContext<AuthContextType>(null as any)
 
-export const AuthProviderWrapper = ({ children }: AuthProviderWrapperProps) => {
+export function AuthProviderWrapper({ children }: AuthProviderWrapperProps) {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(true)
-    const [user, setUser] = useState<null | UserType>(null)
+    const [user, setUser] = useState<User | null>(null)
 
     const loginUser = (token: string) => {
         localStorage.setItem("authToken", token)
@@ -40,7 +46,7 @@ export const AuthProviderWrapper = ({ children }: AuthProviderWrapperProps) => {
                     },
                 })
                 .then(res => {
-                    const user: UserType = res.data.user
+                    const user: User = res.data.user
                     setUser(user)
                     setIsLoggedIn(true)
                     setIsLoading(false)
@@ -78,6 +84,8 @@ export const AuthProviderWrapper = ({ children }: AuthProviderWrapperProps) => {
     )
 }
 
+export const useAuthContext = () => useContext(AuthContext) as AuthContextType
+
 interface AuthProviderWrapperProps {
-    children: any
+    children: ReactNode
 }

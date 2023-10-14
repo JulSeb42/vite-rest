@@ -1,7 +1,7 @@
 /*=============================================== User service ===============================================*/
 
 import { http } from "api"
-import { SERVER_PATHS } from "data"
+import { SERVER_PATHS } from "routes"
 
 class UserService {
     allUsers() {

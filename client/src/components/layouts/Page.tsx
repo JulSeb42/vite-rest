@@ -7,7 +7,7 @@ import { Header } from "components/layouts/Header"
 
 import type { HelmetProps } from "components/layouts/Helmet"
 
-export const Page = ({
+export function Page({
     children,
     title,
     description,
@@ -17,7 +17,7 @@ export const Page = ({
     noWrapper,
     isLoading,
     template = "1col",
-}: PageProps) => {
+}: PageProps) {
     return (
         <>
             <Helmet

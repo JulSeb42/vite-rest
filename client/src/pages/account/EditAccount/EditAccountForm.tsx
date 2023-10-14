@@ -1,26 +1,23 @@
 /*=============================================== EditAccountForm ===============================================*/
 
-import { useContext, useState } from "react"
+import { useState } from "react"
 import type { ChangeEvent, FormEvent } from "react"
 import { Form, Input } from "tsx-library-julseb"
 import { useNavigate } from "react-router-dom"
 
-import { AuthContext } from "context"
-import type { AuthContextType } from "context/types"
+import { useAuthContext } from "context"
 import { userService } from "api"
 
 import { ImageUploader, ErrorMessage } from "components"
 
-import { PATHS } from "data"
+import { PATHS } from "routes"
 
-import type { ErrorMessageType } from "types"
+import type { ErrorMessage as ErrorMessageType } from "types"
 
-export const EditAccountForm = () => {
+export function EditAccountForm() {
     const navigate = useNavigate()
 
-    const { user, setUser, setToken } = useContext(
-        AuthContext
-    ) as AuthContextType
+    const { user, setUser, setToken } = useAuthContext()
 
     const [inputs, setInputs] = useState({
         fullName: user?.fullName,

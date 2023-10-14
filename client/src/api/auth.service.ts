@@ -1,7 +1,7 @@
 /*=============================================== Auth service ===============================================*/
 
 import { http } from "api"
-import { SERVER_PATHS } from "data"
+import { SERVER_PATHS } from "routes"
 
 class AuthService {
     signup(data: any) {

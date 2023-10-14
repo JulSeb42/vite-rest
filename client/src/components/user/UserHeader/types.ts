@@ -1,10 +1,10 @@
 /*=============================================== UserHeader types ===============================================*/
 
 import type { AxiosError } from "axios"
-import type { UserType } from "types"
+import type { User } from "types"
 
 export interface UserHeaderProps {
-    user: UserType
+    user: User
     isLoading?: boolean
     error?: AxiosError
     isAccount?: boolean

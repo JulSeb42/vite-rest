@@ -1,10 +1,9 @@
 /*=============================================== Verify ===============================================*/
 
-import { useContext, useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 
-import { AuthContext } from "context"
-import type { AuthContextType } from "context/types"
+import { useAuthContext } from "context"
 import { authService } from "api"
 
 import {
@@ -14,17 +13,14 @@ import {
     VerificationSuccess,
 } from "pages/auth/Verify/sections"
 
-import type { ErrorMessageType } from "types"
+import type { ErrorMessage } from "types"
 
-export const Verify = () => {
-    const { user, setUser, isLoggedIn, setToken } = useContext(
-        AuthContext
-    ) as AuthContextType
+export function Verify() {
+    const { user, setUser, isLoggedIn, setToken } = useAuthContext()
     const { token, id } = useParams<{ id: string; token: string }>()
 
     const [isLoading, setIsLoading] = useState<boolean>(true)
-    const [errorMessage, setErrorMessage] =
-        useState<ErrorMessageType>(undefined)
+    const [errorMessage, setErrorMessage] = useState<ErrorMessage>(undefined)
 
     useEffect(() => {
         if (isLoading) {

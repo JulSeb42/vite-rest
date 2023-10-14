@@ -12,12 +12,12 @@ import {
 
 import type { UserHeaderProps } from "components/user/UserHeader/types"
 
-export const UserHeader = ({
+export function UserHeader({
     user,
     isLoading,
     error,
     isAccount,
-}: UserHeaderProps) => {
+}: UserHeaderProps) {
     if (isLoading)
         return (
             <SkeletonCard flexDirection="row" gap="xs" alignItems="center">

@@ -2,10 +2,7 @@
 
 // import { Navigate } from "react-router-dom"
 
-import { PATHS } from "data"
-
-import { ProtectedRoute } from "routes/ProtectedRoute"
-import { AnonRoute } from "routes/AnonRoute"
+import { ProtectedRoute, AnonRoute, PATHS } from "routes"
 
 import { Homepage } from "pages/Homepage"
 import { NotFound } from "pages/NotFound"
@@ -25,19 +22,21 @@ import {
 
 import { MyAccount, EditAccount, EditPassword } from "pages/account"
 
+// prependImport
+
 type RouteType = {
     path: string
     element: JSX.Element
 }
 
-const redirects: RouteType[] = [
+const redirects: Array<RouteType> = [
     // {
     //     path: "",
     //     element: <Navigate to="" />,
     // },
 ]
 
-export const routes: RouteType[] = [
+export const routes: Array<RouteType> = [
     { path: PATHS.ROOT, element: <Homepage /> },
     { path: "*", element: <NotFound /> },
 
@@ -119,6 +118,8 @@ export const routes: RouteType[] = [
             </ProtectedRoute>
         ),
     },
+
+    // prependRoute
 
     ...redirects,
 ]

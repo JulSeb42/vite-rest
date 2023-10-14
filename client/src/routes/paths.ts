@@ -18,10 +18,13 @@ export const PATHS = {
     MY_ACCOUNT: "/my-account",
     EDIT_ACCOUNT: "/my-account/edit",
     EDIT_PASSWORD: "/my-account/edit-password",
+
+    // prependPath
 }
 
 export const SERVER_PATHS = {
     AUTH: "/auth",
     UPLOADER: "/uploader",
     USERS: "/users",
+    // prependServerPath
 }

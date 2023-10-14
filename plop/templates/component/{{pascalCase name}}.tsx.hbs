@@ -1,0 +1,31 @@
+/*=============================================== {{ pascalCase name }} component ===============================================*/
+
+{{#if forward}}
+import { forwardRef } from "react"
+
+{{/if}}
+import { Styled{{ pascalCase name }} } from "components/{{ pascalCase name }}/styles"
+import type { {{ pascalCase name }}Props } from "components/{{ pascalCase name }}/types"
+
+{{#if forward}}
+export const {{ pascalCase name }} = forwardRef<HTML{{ pascalCase tag }}Element, {{ pascalCase name }}Props>(
+    (
+        { "data-testid": testid, {{#if as}}as,{{/if}}{{#if children}} children,{{/if}} },
+        ref
+    ) => {
+        return (
+            <Styled{{ pascalCase name }} data-testid={testid}{{#if as}} as={as}{{/if}} ref={ref}>
+                {{#if children}}{children}{{/if}}
+            </Styled{{ pascalCase name }}>
+        )
+    }
+)
+{{else}}
+export function {{ pascalCase name }}({ "data-testid": testid, {{#if as}}as,{{/if}}{{#if children}} children,{{/if}} }: {{ pascalCase name }}Props) {
+	return (
+		<Styled{{ pascalCase name }} data-testid={testid}{{#if as}} as={as}{{/if}}>
+            {{#if children}}{children}{{/if}}
+		</Styled{{ pascalCase name }}>
+	)
+}
+{{/if}}

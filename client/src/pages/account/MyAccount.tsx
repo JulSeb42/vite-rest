@@ -1,18 +1,16 @@
 /*=============================================== MyAccount ===============================================*/
 
-import { useContext } from "react"
 import { Text } from "tsx-library-julseb"
 import { Link } from "react-router-dom"
 
-import { AuthContext } from "context"
-import type { AuthContextType } from "context/types"
+import { useAuthContext } from "context"
 
 import { Page, UserHeader } from "components"
 
-import { PATHS } from "data"
+import { PATHS } from "routes"
 
-export const MyAccount = () => {
-    const { user } = useContext(AuthContext) as AuthContextType
+export function MyAccount() {
+    const { user } = useAuthContext()
 
     return (
         <Page title="My account">

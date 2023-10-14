@@ -2,7 +2,10 @@
 
 import type { ValidationTypes, AllColorsTypes } from "tsx-library-julseb/types"
 
-const inputSizes = { small: "small", large: "large" } as const
+enum inputSizes {
+    small,
+    large,
+}
 
 export type InputImageSizeTypes = keyof typeof inputSizes
 

@@ -12,20 +12,17 @@ import {
     Flexbox,
 } from "tsx-library-julseb"
 import type { ValidationTypes } from "tsx-library-julseb/types"
-
 import { authService, userService } from "api"
-
 import { ErrorMessage } from "components"
+import { COMMON_TEXT } from "data"
+import { PATHS } from "routes"
+import type { User } from "types"
 
-import { COMMON_TEXT, PATHS } from "data"
-
-import type { UserType } from "types"
-
-export const ResetPasswordForm = () => {
+export function ResetPasswordForm() {
     const navigate = useNavigate()
     const { token, id } = useParams<{ token: string; id: string }>()
 
-    const [foundUser, setFoundUser] = useState<null | undefined | UserType>(
+    const [foundUser, setFoundUser] = useState<null | undefined | User>(
         undefined
     )
     const [isLoading, setIsLoading] = useState(true)
@@ -33,10 +30,8 @@ export const ResetPasswordForm = () => {
     useEffect(() => {
         const findUser = () =>
             userService.allUsers().then(res => {
-                const users: UserType[] = res.data
-                const getUser: UserType = users?.filter(
-                    user => user?._id === id
-                )[0]
+                const users: Array<User> = res.data
+                const getUser: User = users?.filter(user => user?._id === id)[0]
 
                 if (getUser) setFoundUser(getUser)
                 else setFoundUser(null)

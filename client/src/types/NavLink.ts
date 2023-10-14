@@ -2,7 +2,7 @@
 
 import type { ButtonLinkTypesRequire } from "tsx-library-julseb/types"
 
-export type NavLinkType = ButtonLinkTypesRequire & {
+export type NavLink = ButtonLinkTypesRequire & {
     text: string
     end?: boolean
 }

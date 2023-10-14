@@ -4,10 +4,9 @@ import { Text } from "tsx-library-julseb"
 import { Link } from "react-router-dom"
 
 import { Page } from "components"
+import { PATHS } from "routes"
 
-import { PATHS } from "data"
-
-export const NotFound = () => {
+export function NotFound() {
     return (
         <Page title="404">
             <Text tag="h1">Page not found</Text>

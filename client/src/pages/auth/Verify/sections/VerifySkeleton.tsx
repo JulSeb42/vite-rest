@@ -4,7 +4,7 @@ import { Skeleton } from "tsx-library-julseb"
 
 import { Page } from "components"
 
-export const VerifySkeleton = () => {
+export function VerifySkeleton() {
     return (
         <Page title="Verify your account">
             <Skeleton

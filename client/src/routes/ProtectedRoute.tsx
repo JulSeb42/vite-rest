@@ -1,19 +1,15 @@
 /*=============================================== ProtectedRoute ===============================================*/
 
-import { useContext } from "react"
 import { Navigate } from "react-router-dom"
 import { PageLoading } from "tsx-library-julseb"
+import { useAuthContext } from "context"
+import { PATHS } from "routes"
 
-import { AuthContext } from "context"
-import type { AuthContextType } from "context/types"
-
-import { PATHS } from "data"
-
-export const ProtectedRoute = ({
+export function ProtectedRoute({
     children,
     redirectTo = PATHS.LOGIN,
-}: ProtectedRouteProps) => {
-    const { isLoggedIn, isLoading } = useContext(AuthContext) as AuthContextType
+}: ProtectedRouteProps) {
+    const { isLoggedIn, isLoading } = useAuthContext()
 
     return isLoading ? (
         <PageLoading />

@@ -7,7 +7,13 @@
         "dev": "vite --open",
         "build": "tsc && vite build",
         "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "cy": "cypress",
+        "cy:open": "cypress open",
+        "cy:ct:run": "cypress run --component --browser electron",
+        "cy:ct:open": "cypress open --component --browser electron",
+        "cy:e2e:run": "cypress run --e2e --browser electron",
+        "cy:e2e:open": "cypress open --e2e --browser electron"
     },
     "dependencies": {
         "axios": "^1.4.0",
@@ -18,15 +24,19 @@
         "tsx-library-julseb": "^8.1.7"
     },
     "devDependencies": {
+        "@types/jest": "^29.5.5",
+        "@types/mocha": "^10.0.2",
         "@types/react": "^18.2.14",
         "@types/react-dom": "^18.2.6",
         "@types/react-router-dom": "^5.3.3",
         "@types/styled-components": "^5.1.26",
-        "@typescript-eslint/eslint-plugin": "^6.1.0",
-        "@typescript-eslint/parser": "^6.1.0",
+        "@typescript-eslint/eslint-plugin": "^6.7.5",
+        "@typescript-eslint/parser": "^6.7.5",
         "@vitejs/plugin-react": "^4.0.3",
-        "eslint": "^8.45.0",
-        "eslint-plugin-import": "^2.27.5",
+        "cypress": "^13.3.1",
+        "eslint": "^8.51.0",
+        "eslint-plugin-import": "^2.28.1",
+        "eslint-plugin-react": "^7.33.2",
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-react-refresh": "^0.4.3",
         "typescript": "^5.1.6",

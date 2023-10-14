@@ -1,25 +1,19 @@
 /*=============================================== EditPassword ===============================================*/
 
-import { useState, useContext } from "react"
+import { useState } from "react"
 import type { ChangeEvent, FormEvent } from "react"
 import { useNavigate } from "react-router-dom"
 import { Text, Form, Input, passwordRegex } from "tsx-library-julseb"
 import type { ValidationTypes } from "tsx-library-julseb/types"
-
-import { AuthContext } from "context"
-import type { AuthContextType } from "context/types"
+import { useAuthContext } from "context"
 import { userService } from "api"
-
 import { Page, ErrorMessage } from "components"
+import { PATHS } from "routes"
+import { COMMON_TEXT } from "data"
+import type { ErrorMessage as ErrorMessageType } from "types"
 
-import type { ErrorMessageType } from "types"
-
-import { COMMON_TEXT, PATHS } from "data"
-
-export const EditPassword = () => {
-    const { user, setUser, setToken } = useContext(
-        AuthContext
-    ) as AuthContextType
+export function EditPassword() {
+    const { user, setUser, setToken } = useAuthContext()
     const navigate = useNavigate()
 
     const [password, setPassword] = useState("")
