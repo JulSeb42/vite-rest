@@ -41,27 +41,40 @@ const generateComponent = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                 message: "Add `children` prop?",
                 default: true,
             },
-        ],
-        actions: [
             {
-                type: "addMany",
-                destination: "../client/src/components/{{ pascalCase name }}",
-                templateFiles: "./templates/component/*.hbs",
-                base: "./templates/component",
-            },
-            {
-                type: "modify",
-                path: "../client/src/components/index.ts",
-                template:
-                    'export * from "components/{{ pascalCase name }}"\n$1',
-                pattern: /(\/\/ prependHere)/g,
-            },
-            {
-                type: "add",
-                path: "../client/src/components/{{ pascalCase name }}/__tests__/{{ pascalCase name }}.cy.tsx",
-                templateFile: "./templates/component/__tests__/test.hbs",
+                type: "confirm",
+                name: "tests",
+                message: "Add tests?",
+                default: true,
             },
         ],
+        actions: data => {
+            const actions = [
+                {
+                    type: "addMany",
+                    destination:
+                        "../client/src/components/{{ pascalCase name }}",
+                    templateFiles: "./templates/component/*.hbs",
+                    base: "./templates/component",
+                },
+                {
+                    type: "modify",
+                    path: "../client/src/components/index.ts",
+                    template:
+                        'export * from "components/{{ pascalCase name }}"\n$1',
+                    pattern: /(\/\/ prependHere)/g,
+                },
+            ]
+
+            if (data.tests)
+                actions.push({
+                    type: "add",
+                    path: "../client/src/components/{{ pascalCase name }}/__tests__/{{ pascalCase name }}.cy.tsx",
+                    templateFile: "./templates/component/__tests__/test.hbs",
+                })
+
+            return actions
+        },
     })
 }
 

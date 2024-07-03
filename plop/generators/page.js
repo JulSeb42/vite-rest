@@ -30,6 +30,12 @@ const generatePage = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                 default: false,
             },
             {
+                type: "confirm",
+                name: "tests",
+                message: "Add tests?",
+                default: true,
+            },
+            {
                 type: "list",
                 name: "protected",
                 choices: ["none", "protected", "anon"],
@@ -75,6 +81,13 @@ const generatePage = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                     templateFile: "./templates/page/page-index.hbs",
                 })
             }
+
+            if (data.tests)
+                actions.push({
+                    type: "add",
+                    path: "../client/cypress/e2e/{{ pascalCase name }}.cy.ts",
+                    templateFile: "./templates/page/__tests__/test.hbs",
+                })
 
             return actions
         },

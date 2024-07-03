@@ -1,13 +1,13 @@
 /*=============================================== Page ===============================================*/
 
+import type { ReactNode } from "react"
 import { Wrapper, Main, PageLoading } from "tsx-library-julseb"
-
 import { Helmet } from "components/layouts/Helmet"
 import { Header } from "components/layouts/Header"
-
 import type { HelmetProps } from "components/layouts/Helmet"
 
 export function Page({
+    "data-testid": testid,
     children,
     title,
     description,
@@ -34,7 +34,7 @@ export function Page({
                     <Header />
 
                     {!noWrapper ? (
-                        <Wrapper>
+                        <Wrapper data-testid={testid}>
                             {template === "1col" ? (
                                 <Main
                                     minHeight="calc(100vh - 56px)"
@@ -56,7 +56,8 @@ export function Page({
 }
 
 interface PageProps extends HelmetProps {
-    children?: any
+    "data-testid"?: string
+    children?: ReactNode | Array<ReactNode>
     mainWidth?: "default" | "large" | "form"
     template?: "1col" | "2cols" | "3cols"
     isLoading?: boolean

@@ -1,5 +1,6 @@
 /*=============================================== ProtectedRoute ===============================================*/
 
+import type { ReactNode } from "react"
 import { Navigate } from "react-router-dom"
 import { PageLoading } from "tsx-library-julseb"
 import { useAuthContext } from "context"
@@ -21,6 +22,6 @@ export function ProtectedRoute({
 }
 
 interface ProtectedRouteProps {
-    children: any
+    children: ReactNode | Array<ReactNode>
     redirectTo?: string
 }

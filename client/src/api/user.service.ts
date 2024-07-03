@@ -3,12 +3,14 @@
 import { http } from "api"
 import { SERVER_PATHS } from "routes"
 
+import type { ApiResponse, User } from "types"
+
 class UserService {
-    allUsers() {
+    allUsers(): ApiResponse<Array<User>> {
         return http.get(`${SERVER_PATHS.USERS}/all-users`)
     }
 
-    getUser(id: string) {
+    getUser(id: string): ApiResponse<User> {
         return http.get(`${SERVER_PATHS.USERS}/user/${id}`)
     }
 
