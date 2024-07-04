@@ -4,6 +4,5 @@ export const SERVER_PATHS = {
     AUTH: "/auth",
     UPLOADER: "/uploader",
     USERS: "/users",
-    HELLO: "/hello",
-// prependServerPath
+    // prependServerPath
 }
