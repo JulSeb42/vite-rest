@@ -1,4 +1,4 @@
 /*=============================================== Exports ===============================================*/
 
-export * from "../../../shared"
-// export * from "data/common-texts"
+export * from "./site-data"
+export * from "./common-texts"

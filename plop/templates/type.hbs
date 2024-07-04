@@ -1,0 +1,11 @@
+/*=============================================== {{ pascalCase name }} ===============================================*/
+
+{{#if interface}}
+export interface {{ pascalCase name }} {
+    
+}
+{{else}}
+export type {{ pascalCase name }} = {
+    {{#if type}}_id: string{{/if}}
+}
+{{/if}}

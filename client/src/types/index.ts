@@ -1,6 +1,7 @@
 /*=============================================== Global types ===============================================*/
 
-export * from "./User"
-export * from "./Error"
-export * from "./NavLink"
-export * from "./ApiResponse"
+export * from "./User.type"
+export * from "./Error.type"
+export * from "./NavLink.type"
+export * from "./ApiResponse.type"
+// prependHere

@@ -9,7 +9,7 @@ import { useAuthContext } from "context"
 import { userService } from "api"
 import { Page, ErrorMessage } from "components"
 import { PATHS } from "routes"
-import { COMMON_TEXT } from "data"
+import { COMMON_TEXTS } from "data"
 import type { ErrorMessage as ErrorMessageType } from "types"
 
 export function EditPassword() {
@@ -60,9 +60,11 @@ export function EditPassword() {
                     password
                     label="New password"
                     helperBottom={{
-                        text: validation ? COMMON_TEXT.PASSWORD_NOT_PASSED : "",
+                        text: validation
+                            ? COMMON_TEXTS.PASSWORD_NOT_PASSED
+                            : "",
                         icon:
-                            validation && COMMON_TEXT.ICON_PASSWORD_NOT_PASSED,
+                            validation && COMMON_TEXTS.ICON_PASSWORD_NOT_PASSED,
                         iconColor: "danger",
                     }}
                     validation={validation}

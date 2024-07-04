@@ -4,12 +4,10 @@ import { Router } from "express"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import { passwordRegex, emailRegex, getRandomString } from "ts-utils-julseb"
-
 import { UserModel } from "../models/User.model"
-
 import { isAuthenticated } from "../middleware"
-
 import { jwtConfig, SALT_ROUNDS, TOKEN_SECRET, sendMail } from "../utils"
+import { COMMON_TEXTS } from "../../shared"
 
 const router = Router()
 
@@ -18,23 +16,23 @@ router.post("/signup", (req, res, next) => {
     const { email, fullName, password, avatar } = req.body
     const verifyToken = getRandomString(20)
 
-    if (!fullName) {
-        return res
-            .status(400)
-            .json({ message: "Please provide your full name." })
-    }
+    if (!fullName || !emailRegex.test(email) || !passwordRegex.test(password)) {
+        if (!fullName)
+            res.status(400).json({
+                message: COMMON_TEXTS.ERRORS.FULL_NAME_EMPTY,
+            })
 
-    if (!emailRegex.test(email)) {
-        return res
-            .status(400)
-            .json({ message: "Please provide a valid email address." })
-    }
+        if (!emailRegex.test(email))
+            res.status(400).json({
+                message: COMMON_TEXTS.ERRORS.EMAIL_NOT_VALID,
+            })
 
-    if (!passwordRegex.test(password)) {
-        return res.status(400).json({
-            message:
-                "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.",
-        })
+        if (!passwordRegex.test(password))
+            res.status(400).json({
+                message: COMMON_TEXTS.ERRORS.PASSWORD_NOT_VALID,
+            })
+
+        return
     }
 
     UserModel.findOne({ email })
@@ -43,7 +41,7 @@ router.post("/signup", (req, res, next) => {
             if (foundUser) {
                 return res
                     .status(400)
-                    .json({ message: "This email is already taken." })
+                    .json({ message: COMMON_TEXTS.ERRORS.EMAIL_TAKEN })
             }
 
             const salt = bcrypt.genSaltSync(SALT_ROUNDS)
@@ -59,8 +57,11 @@ router.post("/signup", (req, res, next) => {
             }).then(createdUser => {
                 sendMail(
                     email,
-                    "Verify your account on our app",
-                    `Hello,<br /><br />Thank you for creating your account on our app! <a href="${process.env.ORIGIN}/verify/${verifyToken}/${createdUser._id}">Click here to verify your account</a>.`
+                    COMMON_TEXTS.EMAIL_SIGNUP_TITLE,
+                    COMMON_TEXTS.EMAIL_SIGNUP_BODY(
+                        createdUser as any,
+                        verifyToken
+                    )
                 )
 
                 const payload = { user: createdUser }
@@ -84,7 +85,7 @@ router.post("/login", (req, res, next) => {
     if (email === "" || password === "") {
         return res
             .status(400)
-            .json({ message: "Please provide your email and password." })
+            .json({ message: COMMON_TEXTS.ERRORS.PROVIDE_EMAIL_AND_PASSWORD })
     }
 
     UserModel.findOne({ email })
@@ -92,12 +93,11 @@ router.post("/login", (req, res, next) => {
             if (!foundUser) {
                 return res
                     .status(401)
-                    .json({ message: "This user does not exist." })
+                    .json({ message: COMMON_TEXTS.ERRORS.USER_NOT_EXIST })
             }
 
             const passwordCorrect = bcrypt.compareSync(
                 password,
-                // @ts-expect-error
                 foundUser.password
             )
 
@@ -109,7 +109,7 @@ router.post("/login", (req, res, next) => {
                 res.status(200).json({ authToken: authToken })
             } else {
                 res.status(401).json({
-                    message: "Unable to authenticate the user.",
+                    message: COMMON_TEXTS.ERRORS.AUTH_NOT_POSSIBLE,
                 })
             }
         })
@@ -145,7 +145,9 @@ router.post("/forgot-password", (req, res, next) => {
     const resetToken = getRandomString(20)
 
     if (!emailRegex.test(email)) {
-        return res.status(400).json({ message: "Please enter a valid email." })
+        return res
+            .status(400)
+            .json({ message: COMMON_TEXTS.ERRORS.EMAIL_NOT_VALID })
     }
 
     UserModel.findOne({ email })
@@ -153,7 +155,7 @@ router.post("/forgot-password", (req, res, next) => {
             if (!foundUser) {
                 return res
                     .status(400)
-                    .json({ message: "This user does not exist." })
+                    .json({ message: COMMON_TEXTS.ERRORS.USER_NOT_EXIST })
             }
 
             UserModel.findOneAndUpdate(
@@ -165,9 +167,11 @@ router.post("/forgot-password", (req, res, next) => {
 
                 sendMail(
                     email,
-                    "Reset your password on our app",
-                    // @ts-expect-error
-                    `Hello,<br /><br />To reset your password, <a href="${process.env.ORIGIN}/reset-password/${resetToken}/${foundUser._id}">click here</a>.`
+                    COMMON_TEXTS.EMAIL_RESET_PASSWORD_TITLE,
+                    COMMON_TEXTS.EMAIL_RESET_PASSWORD_BODY(
+                        foundUser as any,
+                        resetToken
+                    )
                 )
 
                 // @ts-expect-error
@@ -182,10 +186,9 @@ router.put("/reset-password", (req, res, next) => {
     const { password, resetToken, id } = req.body
 
     if (!passwordRegex.test(password)) {
-        return res.status(400).json({
-            message:
-                "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.",
-        })
+        return res
+            .status(400)
+            .json({ message: COMMON_TEXTS.ERRORS.EMAIL_NOT_VALID })
     }
 
     UserModel.findById(id)
@@ -193,8 +196,7 @@ router.put("/reset-password", (req, res, next) => {
             // @ts-expect-error
             if (foundUser.resetToken !== resetToken) {
                 return res.status(400).json({
-                    message:
-                        "There was a problem trying to reset your password.",
+                    message: COMMON_TEXTS.ERRORS.PROBLEM_RESET_PASSWORD,
                 })
             }
 

@@ -1,12 +1,15 @@
 /*=============================================== {{ pascalCase name }} model ===============================================*/
 
 import { Schema, model } from "mongoose"
+{{#if type}}
+import { {{ pascalCase name }} } from "../types"
+{{/if}}
 
-const {{ pascalCase name }}Schema = new Schema(
+const {{ pascalCase name }}Schema = new Schema{{#if type}}<{{ pascalCase name }}>{{/if}}(
     {
         
     },
     { timestamps: true }
 )
 
-export const {{ pascalCase name }}Model = model("{{ pascalCase name }}", {{ pascalCase name }}Schema)
+export const {{ pascalCase name }}Model = model{{#if type}}<{{ pascalCase name }}>{{/if}}("{{ pascalCase name }}", {{ pascalCase name }}Schema)

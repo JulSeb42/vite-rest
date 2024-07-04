@@ -1,8 +1,12 @@
 /*=============================================== Error handling ===============================================*/
 
+import { COMMON_TEXTS } from "../../shared"
+
 export const errorHandler = (app: any) => {
     app.use((_: null, res: any) => {
-        res.status(404).json({ errorMessage: "This route does not exist" })
+        res.status(404).json({
+            errorMessage: COMMON_TEXTS.ERRORS.ROUTE_NOT_EXIST,
+        })
     })
 
     app.use((err: any, req: any, res: any) => {
@@ -10,7 +14,7 @@ export const errorHandler = (app: any) => {
 
         if (!res.headersSent) {
             res.status(500).json({
-                errorMessage: "Internal server error. Check the server console",
+                errorMessage: COMMON_TEXTS.ERRORS.SERVER_ERROR,
             })
         }
     })

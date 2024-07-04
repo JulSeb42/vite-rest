@@ -14,7 +14,8 @@
         "plop:sc": "yarn plop single-component",
         "plop:p": "yarn plop page",
         "plop:r": "yarn plop route",
-        "plop:m": "yarn plop model"
+        "plop:m": "yarn plop model",
+        "plop:ty": "yarn plop type"
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",

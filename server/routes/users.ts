@@ -4,10 +4,9 @@ import { Router } from "express"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import { passwordRegex } from "ts-utils-julseb"
-
 import { UserModel } from "../models/User.model"
-
 import { SALT_ROUNDS, TOKEN_SECRET, jwtConfig } from "../utils"
+import { COMMON_TEXTS } from "../../shared"
 
 const router = Router()
 
@@ -19,10 +18,14 @@ router.get("/all-users", (_, res, next) => {
 })
 
 // Get user by ID
-router.get("/user/:id", (req, res, next) => {
+router.get("/user/:id", (req, res) => {
     UserModel.findById(req.params.id)
         .then(userFromDb => res.status(200).json(userFromDb))
-        .catch(() => res.status(400).json({ message: "User not found" }))
+        .catch(() =>
+            res
+                .status(400)
+                .json({ message: COMMON_TEXTS.ERRORS.USER_NOT_EXIST })
+        )
 })
 
 // Edit user
@@ -32,7 +35,7 @@ router.put("/edit-account/:id", (req, res, next) => {
     if (!fullName) {
         return res
             .status(400)
-            .json({ message: "Your full name can not be empty." })
+            .json({ message: COMMON_TEXTS.ERRORS.FULL_NAME_EMPTY })
     }
 
     UserModel.findByIdAndUpdate(
@@ -60,8 +63,7 @@ router.put("/edit-password/:id", (req, res, next) => {
 
     if (!passwordRegex.test(password)) {
         return res.status(400).json({
-            message:
-                "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.",
+            message: COMMON_TEXTS.ERRORS.PASSWORD_NOT_VALID,
         })
     }
 

@@ -1,7 +1,6 @@
 /*=============================================== Connect to database ===============================================*/
 
 import mongoose from "mongoose"
-
 import { MONGODB_URI } from "../utils/consts"
 
 mongoose

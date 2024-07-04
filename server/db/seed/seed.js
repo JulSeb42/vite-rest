@@ -3,9 +3,10 @@
 require("dotenv/config")
 const mongoose = require("mongoose")
 const bcrypt = require("bcryptjs")
-const { getRandomString } = require("ts-utils-julseb")
+const { getRandomString, getRandomAvatar } = require("ts-utils-julseb")
 
-const { UserModel } = require("../../models/User.model")
+// Convert TS model to JS model and add it to "./models"
+const { UserModel } = require("./models/User.model")
 
 // Hash password
 const password = "Password42"
@@ -20,6 +21,7 @@ const fakeUser = {
     password: hash,
     verified: true,
     verifyToken: getRandomString(20),
+    avatar: getRandomAvatar(),
 }
 
 UserModel.insertMany(fakeUser)

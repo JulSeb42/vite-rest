@@ -14,7 +14,7 @@ import {
 import type { ValidationTypes } from "tsx-library-julseb/types"
 import { authService, userService } from "api"
 import { ErrorMessage } from "components"
-import { COMMON_TEXT } from "data"
+import { COMMON_TEXTS } from "data"
 import { PATHS } from "routes"
 import type { User } from "types"
 
@@ -94,9 +94,11 @@ export function ResetPasswordForm() {
                     password
                     label="New password"
                     helperBottom={{
-                        text: validation ? COMMON_TEXT.PASSWORD_NOT_PASSED : "",
+                        text: validation
+                            ? COMMON_TEXTS.PASSWORD_NOT_PASSED
+                            : "",
                         icon:
-                            validation && COMMON_TEXT.ICON_PASSWORD_NOT_PASSED,
+                            validation && COMMON_TEXTS.ICON_PASSWORD_NOT_PASSED,
                         iconColor: "danger",
                     }}
                     value={password}
