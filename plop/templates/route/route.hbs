@@ -1,7 +1,14 @@
-/*=============================================== {{ name }} routes ===============================================*/
+/*=============================================== {{ pascalCase name }} routes ===============================================*/
 
 import { Router } from "express"
+import { {{ pascalCase name }}Model } from "../models"
 
 const router = Router()
+// Get all {{ pascalCase name }}
+router.get("/all-{{ kebabCase name }}", async (req, res, next) => {
+    return await {{ pascalCase name }}Model.find()
+        .then(found{{ pascalCase name }} => res.status(200).json(found{{ pascalCase name }}))
+        .catch(err => next(err))
+})
 
 export default router

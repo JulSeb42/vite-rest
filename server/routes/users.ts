@@ -4,7 +4,7 @@ import { Router } from "express"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import { passwordRegex } from "ts-utils-julseb"
-import { UserModel } from "../models/User.model"
+import { UserModel } from "../models"
 import { SALT_ROUNDS, TOKEN_SECRET, jwtConfig } from "../utils"
 import { COMMON_TEXTS } from "../../shared"
 

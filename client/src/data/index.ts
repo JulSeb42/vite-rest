@@ -1,4 +1,3 @@
 /*=============================================== Exports ===============================================*/
 
-export * from "../../../shared"
-// export * from "data/common-texts"
+export { SITE_DATA, COMMON_TEXTS } from "../../../shared"

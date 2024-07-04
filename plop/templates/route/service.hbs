@@ -2,9 +2,12 @@
 
 import { http } from "api"
 import { SERVER_PATHS } from "routes"
+import type { ApiResponse, {{ pascalCase name }} } from "types"
 
 class {{ pascalCase name }}Service {
-
+    all{{ pascalCase name }}(): ApiResponse<Array<{{ pascalCase name }}>> {
+        return http.get(`${SERVER_PATHS.{{ constantCase name }} }/{{ kebabCase name }}`)
+    }
 }
 
 export const {{ camelCase name }}Service = new {{ pascalCase name }}Service()

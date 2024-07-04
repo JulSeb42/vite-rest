@@ -1,5 +1,7 @@
 /*=============================================== Generate TS type ===============================================*/
 
+const { generateTypeActions } = require("../utils/generate-actions")
+
 const generateType = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setGenerator } = plop
 
@@ -15,23 +17,7 @@ const generateType = (/** @type {import('plop').NodePlopAPI} */ plop) => {
             },
         ],
         actions: data => {
-            return [
-                {
-                    type: "add",
-                    path: `../client/src/types/{{ pascalCase name }}.${
-                        data.interface ? "interface" : "type"
-                    }.ts`,
-                    templateFile: "./templates/type.hbs",
-                },
-                {
-                    type: "modify",
-                    path: "../client/src/types/index.ts",
-                    template: `export * from "./{{ pascalCase name }}.${
-                        data.interface ? "interface" : "type"
-                    }"\n$1`,
-                    pattern: /(\/\/ prependHere)/g,
-                },
-            ]
+            return generateTypeActions(data.interface)
         },
     })
 }
