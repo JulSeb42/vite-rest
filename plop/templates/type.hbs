@@ -6,6 +6,6 @@ export interface {{ pascalCase name }} {
 }
 {{else}}
 export type {{ pascalCase name }} = {
-    {{#if type}}_id: string{{/if}}
+    _id: string
 }
 {{/if}}

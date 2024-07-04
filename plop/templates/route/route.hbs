@@ -5,7 +5,7 @@ import { {{ pascalCase name }}Model } from "../models"
 
 const router = Router()
 // Get all {{ pascalCase name }}
-router.get("/all-{{ kebabCase name }}", async (req, res, next) => {
+router.get("/all-{{ kebabCase name }}", async (_, res, next) => {
     return await {{ pascalCase name }}Model.find()
         .then(found{{ pascalCase name }} => res.status(200).json(found{{ pascalCase name }}))
         .catch(err => next(err))

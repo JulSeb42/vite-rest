@@ -16,22 +16,8 @@ const generateModel = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                 name: "name",
                 message: "Enter route's name",
             },
-            {
-                type: "confirm",
-                name: "type",
-                message: "Create a TS type?",
-                default: true,
-            },
         ],
-        actions: data => {
-            const actions = generateModelActions
-
-            if (data.type) {
-                actions.push(...generateTypeActions(false))
-            }
-
-            return actions
-        },
+        actions: [...generateModelActions, ...generateTypeActions(false)],
     })
 }
 
