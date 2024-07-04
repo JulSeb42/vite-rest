@@ -1,7 +1,6 @@
 /*=============================================== EditPassword ===============================================*/
 
-import { useState } from "react"
-import type { ChangeEvent, FormEvent } from "react"
+import { useState, type ChangeEvent, type FormEvent } from "react"
 import { useNavigate } from "react-router-dom"
 import { Text, Form, Input, passwordRegex } from "tsx-library-julseb"
 import type { ValidationTypes } from "tsx-library-julseb/types"
@@ -9,7 +8,7 @@ import { useAuthContext } from "context"
 import { userService } from "api"
 import { Page, ErrorMessage } from "components"
 import { PATHS } from "routes"
-import { COMMON_TEXTS } from "data"
+import { COMMON_TEXTS } from "shared"
 import type { ErrorMessage as ErrorMessageType } from "types"
 
 export function EditPassword() {
@@ -61,10 +60,11 @@ export function EditPassword() {
                     label="New password"
                     helperBottom={{
                         text: validation
-                            ? COMMON_TEXTS.PASSWORD_NOT_PASSED
+                            ? COMMON_TEXTS.ERRORS.PASSWORD_NOT_VALID
                             : "",
                         icon:
-                            validation && COMMON_TEXTS.ICON_PASSWORD_NOT_PASSED,
+                            validation &&
+                            COMMON_TEXTS.ERRORS.ICON_PASSWORD_NOT_VALID,
                         iconColor: "danger",
                     }}
                     validation={validation}

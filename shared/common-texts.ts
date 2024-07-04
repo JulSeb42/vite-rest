@@ -12,7 +12,7 @@ export const COMMON_TEXTS = {
     EMAIL_RESET_PASSWORD_BODY: (user: User, token: string) =>
         `Hello ${user.fullName},<br /><br />To reset your password, <a href="${process.env.ORIGIN}/reset-password/${token}/${user._id}">click here</a>.`,
 
-    USER_DELETED: "User deleted",
+    USER_DELETED: "User deleted.",
 
     ERRORS: {
         FULL_NAME_EMPTY: "Please provide your full name.",

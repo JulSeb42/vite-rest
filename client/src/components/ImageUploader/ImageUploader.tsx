@@ -2,9 +2,7 @@
 
 import type { ChangeEvent } from "react"
 import { InputImage } from "tsx-library-julseb"
-
 import { cloudinaryService } from "api"
-
 import type { ImageUploaderProps } from "components/ImageUploader/types"
 
 export function ImageUploader({

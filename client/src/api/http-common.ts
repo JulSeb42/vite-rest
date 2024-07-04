@@ -5,9 +5,10 @@
 */
 
 import axios from "axios"
+import { BASE_API_URL } from "shared"
 
 export const http = axios.create({
-    baseURL: "/api",
+    baseURL: BASE_API_URL,
     headers: {
         "Content-type": "application/json",
     },

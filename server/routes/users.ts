@@ -6,19 +6,19 @@ import jwt from "jsonwebtoken"
 import { passwordRegex } from "ts-utils-julseb"
 import { UserModel } from "../models"
 import { SALT_ROUNDS, TOKEN_SECRET, jwtConfig } from "../utils"
-import { COMMON_TEXTS } from "../../shared"
+import { COMMON_TEXTS, SERVER_USERS_PATHS } from "../../shared"
 
 const router = Router()
 
 // Get all users
-router.get("/all-users", (_, res, next) => {
+router.get(SERVER_USERS_PATHS.ALL_USERS, (_, res, next) => {
     UserModel.find()
         .then(usersFromDb => res.status(200).json(usersFromDb))
         .catch(err => next(err))
 })
 
 // Get user by ID
-router.get("/user/:id", (req, res) => {
+router.get(SERVER_USERS_PATHS.USER(), (req, res) => {
     UserModel.findById(req.params.id)
         .then(userFromDb => res.status(200).json(userFromDb))
         .catch(() =>
@@ -29,7 +29,7 @@ router.get("/user/:id", (req, res) => {
 })
 
 // Edit user
-router.put("/edit-account/:id", (req, res, next) => {
+router.put(SERVER_USERS_PATHS.EDIT_ACCOUNT(), (req, res, next) => {
     const { fullName, avatar } = req.body
 
     if (!fullName) {
@@ -58,7 +58,7 @@ router.put("/edit-account/:id", (req, res, next) => {
 })
 
 // Edit password
-router.put("/edit-password/:id", (req, res, next) => {
+router.put(SERVER_USERS_PATHS.EDIT_PASSWORD(), (req, res, next) => {
     const { password } = req.body
 
     if (!passwordRegex.test(password)) {
@@ -90,9 +90,11 @@ router.put("/edit-password/:id", (req, res, next) => {
 })
 
 // Delete user
-router.delete("/delete-account/:id", (req, res, next) => {
+router.delete(SERVER_USERS_PATHS.DELETE_ACCOUNT(), (req, res, next) => {
     UserModel.findByIdAndDelete(req.params.id)
-        .then(() => res.status(200).json({ message: "User deleted" }))
+        .then(() =>
+            res.status(200).json({ message: COMMON_TEXTS.USER_DELETED })
+        )
         .catch(err => next(err))
 })
 

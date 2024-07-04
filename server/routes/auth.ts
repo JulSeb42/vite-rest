@@ -7,12 +7,12 @@ import { passwordRegex, emailRegex, getRandomString } from "ts-utils-julseb"
 import { UserModel } from "../models"
 import { isAuthenticated } from "../middleware"
 import { jwtConfig, SALT_ROUNDS, TOKEN_SECRET, sendMail } from "../utils"
-import { COMMON_TEXTS } from "../../shared"
+import { COMMON_TEXTS, SERVER_AUTH_PATHS } from "../../shared"
 
 const router = Router()
 
 // Signup
-router.post("/signup", (req, res, next) => {
+router.post(SERVER_AUTH_PATHS.SIGNUP, (req, res, next) => {
     const { email, fullName, password, avatar } = req.body
     const verifyToken = getRandomString(20)
 
@@ -79,7 +79,7 @@ router.post("/signup", (req, res, next) => {
 })
 
 // Login
-router.post("/login", (req, res, next) => {
+router.post(SERVER_AUTH_PATHS.LOGIN, (req, res, next) => {
     const { email, password } = req.body
 
     if (email === "" || password === "") {
@@ -117,7 +117,7 @@ router.post("/login", (req, res, next) => {
 })
 
 // Verify if user is logged in
-router.get("/loggedin", isAuthenticated, (req, res, next) => {
+router.get(SERVER_AUTH_PATHS.LOGGED_IN, isAuthenticated, (req, res, next) => {
     // @ts-expect-error
     console.log(`req.payload: ${req.payload}`)
     // @ts-expect-error
@@ -125,7 +125,7 @@ router.get("/loggedin", isAuthenticated, (req, res, next) => {
 })
 
 // Verify account
-router.put("/verify", (req, res, next) => {
+router.put(SERVER_AUTH_PATHS.VERIFY, (req, res, next) => {
     const { id } = req.body
 
     UserModel.findByIdAndUpdate(id, { verified: true }, { new: true })
@@ -140,7 +140,7 @@ router.put("/verify", (req, res, next) => {
 })
 
 // Forgot password
-router.post("/forgot-password", (req, res, next) => {
+router.post(SERVER_AUTH_PATHS.FORGOT_PASSWORD, (req, res, next) => {
     const { email } = req.body
     const resetToken = getRandomString(20)
 
@@ -182,7 +182,7 @@ router.post("/forgot-password", (req, res, next) => {
 })
 
 // Reset password
-router.put("/reset-password", (req, res, next) => {
+router.put(SERVER_AUTH_PATHS.RESET_PASSWORD, (req, res, next) => {
     const { password, resetToken, id } = req.body
 
     if (!passwordRegex.test(password)) {

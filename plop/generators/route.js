@@ -45,6 +45,13 @@ const generateRoute = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                 pattern: /(\/\/ prependServerPath)/g,
             },
             {
+                type: "modify",
+                path: "../shared/server-paths.ts",
+                template:
+                    'export const SERVER_{{ constantCase name }}_PATHS = {\n    ALL_{{ constantCase name }}S: "/all-{{ kebabCase name }}s",\n    GET_{{ constantCase name }}: (id = ":id") => `/{{ kebabCase name }}/${id}`,\n}\n$1',
+                pattern: /(\/\/ prependNewPaths)/g,
+            },
+            {
                 type: "add",
                 path: "../client/src/api/{{ kebabCase name }}.service.ts",
                 templateFile: "./templates/route/service.hbs",

@@ -2,11 +2,12 @@
 
 import { Router } from "express"
 import { fileUploader } from "../config/cloudinary.config"
+import { SERVER_UPLOADER_PATHS } from "../../shared"
 
 const router = Router()
 
 router.put(
-    "/upload-picture",
+    SERVER_UPLOADER_PATHS.UPLOAD_PICTURE,
     fileUploader.single("imageUrl"),
     (req, res, next) => {
         if (!req.file) {

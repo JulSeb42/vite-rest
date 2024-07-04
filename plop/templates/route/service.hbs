@@ -1,12 +1,19 @@
 /*=============================================== {{ pascalCase name }} service ===============================================*/
 
 import { http } from "api"
-import { SERVER_PATHS } from "routes"
+import { SERVER_PATHS, SERVER_{{ constantCase name }}_PATHS } from "shared"
+import { generateUrl } from "utils"
 import type { ApiResponse, {{ pascalCase name }} } from "types"
+
+const generatePath = (url: string) => generateUrl(SERVER_PATHS.{{ constantCase name }}, url)
 
 class {{ pascalCase name }}Service {
     all{{ pascalCase name }}(): ApiResponse<Array<{{ pascalCase name }}>> {
-        return http.get(`${SERVER_PATHS.{{ constantCase name }} }/{{ kebabCase name }}`)
+        return http.get(generatePath(SERVER_{{ constantCase name }}_PATHS.ALL_{{ constantCase name }}S))
+    }
+
+    get{{ pascalCase name }}(id: string): ApiResponse<{{ pascalCase name }}> {
+        return http.get(generatePath(SERVER_{{ constantCase name }}_PATHS.GET_{{ constantCase name }}(id)))
     }
 }
 

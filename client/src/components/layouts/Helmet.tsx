@@ -1,15 +1,9 @@
 /*=============================================== Helmet ===============================================*/
 
 import { Helmet as Head } from "tsx-library-julseb"
+import { SITE_DATA } from "shared"
 
-import { SITE_DATA } from "data"
-
-export function Helmet({
-    title,
-    description,
-    keywords,
-    cover,
-}: HelmetProps) {
+export function Helmet({ title, description, keywords, cover }: HelmetProps) {
     return (
         <Head
             title={`${title} | ${SITE_DATA.NAME}`}

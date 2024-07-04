@@ -9,12 +9,9 @@ import {
     uuid,
 } from "tsx-library-julseb"
 import type { ThemeContextProps } from "tsx-library-julseb/types"
-
 import { useAuthContext } from "context"
-
-import { SITE_DATA } from "data"
+import { SITE_DATA } from "shared"
 import { PATHS } from "routes"
-
 import type { NavLink as NavLinkType } from "types"
 
 export function Header() {
