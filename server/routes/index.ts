@@ -13,9 +13,9 @@ router.get("/", (_, res) => {
     res.json("All good in here")
 })
 
-router.use(SERVER_PATHS.AUTH, auth)
-router.use(SERVER_PATHS.USERS, users)
-router.use(SERVER_PATHS.UPLOADER, uploader)
+router.use(SERVER_PATHS.AUTH.ROOT, auth)
+router.use(SERVER_PATHS.USERS.ROOT, users)
+router.use(SERVER_PATHS.UPLOADER.ROOT, uploader)
 // prependRouterUse
 
 export default router

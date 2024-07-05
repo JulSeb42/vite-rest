@@ -1,34 +1,30 @@
 /*=============================================== User service ===============================================*/
 
 import { http } from "api"
-import { SERVER_PATHS, SERVER_USERS_PATHS } from "shared"
-import { generateUrl } from "utils"
+import { SERVER_PATHS } from "shared"
 import type { ApiResponse, User } from "types"
 
-const generatePath = (url: string) => generateUrl(SERVER_PATHS.USERS, url)
+const { USERS: PATHS } = SERVER_PATHS
 
 class UserService {
-    allUsers(): ApiResponse<Array<User>> {
-        return http.get(generatePath(SERVER_USERS_PATHS.ALL_USERS))
+    async allUsers(): ApiResponse<Array<User>> {
+        return await http.get(PATHS.ALL_USERS)
     }
 
-    getUser(id: string): ApiResponse<User> {
-        return http.get(generatePath(SERVER_USERS_PATHS.USER(id)))
+    async getUser(id: string): ApiResponse<User> {
+        return await http.get(PATHS.USER(id))
     }
 
-    editAccount(id: string, data: any) {
-        return http.put(generatePath(SERVER_USERS_PATHS.EDIT_ACCOUNT(id)), data)
+    async editAccount(id: string, data: any) {
+        return await http.put(PATHS.EDIT_ACCOUNT(id), data)
     }
 
     editPassword(id: string, data: any) {
-        return http.put(
-            generatePath(SERVER_USERS_PATHS.EDIT_PASSWORD(id)),
-            data
-        )
+        return http.put(PATHS.EDIT_PASSWORD(id), data)
     }
 
     deleteAccount(id: string) {
-        return http.delete(generatePath(SERVER_USERS_PATHS.DELETE_ACCOUNT(id)))
+        return http.delete(PATHS.DELETE_ACCOUNT(id))
     }
 }
 

@@ -1,7 +1,7 @@
 /*=============================================== User model ===============================================*/
 
 import { Schema, model } from "mongoose"
-import type { User } from "../types"
+import type { User } from "../../shared/types"
 
 const userSchema = new Schema<User>(
     {

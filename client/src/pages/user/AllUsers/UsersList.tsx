@@ -15,7 +15,7 @@ export function UsersList() {
     )
     const users: Array<User> | null = response?.data
 
-    if (loading) return <UsersListSkeleton />
+    if (loading || (!response && !error)) return <UsersListSkeleton />
 
     if (error) return <Text>Error while fetching users: {error}</Text>
 

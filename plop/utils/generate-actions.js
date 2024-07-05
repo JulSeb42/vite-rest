@@ -20,14 +20,14 @@ const generateTypeActions = interface => {
     return [
         {
             type: "add",
-            path: `../client/src/types/{{ pascalCase name }}.${
+            path: `../shared/types/{{ pascalCase name }}.${
                 interface ? "interface" : "type"
             }.ts`,
             templateFile: "./templates/type.hbs",
         },
         {
             type: "modify",
-            path: "../client/src/types/index.ts",
+            path: "../shared/types/index.ts",
             template: `export * from "./{{ pascalCase name }}.${
                 interface ? "interface" : "type"
             }"\n$1`,

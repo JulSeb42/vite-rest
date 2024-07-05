@@ -1,7 +1,7 @@
 /*=============================================== Common texts ===============================================*/
 
 import { SITE_DATA } from "./site-data"
-import type { User } from "../server/types"
+import type { User } from "../shared/types"
 
 export const COMMON_TEXTS = {
     EMAIL_SIGNUP_TITLE: `Verify your account on ${SITE_DATA.NAME}`,

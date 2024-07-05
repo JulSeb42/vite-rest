@@ -7,12 +7,14 @@ import { passwordRegex, emailRegex, getRandomString } from "ts-utils-julseb"
 import { UserModel } from "../models"
 import { isAuthenticated } from "../middleware"
 import { jwtConfig, SALT_ROUNDS, TOKEN_SECRET, sendMail } from "../utils"
-import { COMMON_TEXTS, SERVER_AUTH_PATHS } from "../../shared"
+import { COMMON_TEXTS, SERVER_PATHS } from "../../shared"
 
 const router = Router()
 
+const { AUTH: PATHS } = SERVER_PATHS
+
 // Signup
-router.post(SERVER_AUTH_PATHS.SIGNUP, (req, res, next) => {
+router.post(PATHS.SIGNUP, (req, res, next) => {
     const { email, fullName, password, avatar } = req.body
     const verifyToken = getRandomString(20)
 
@@ -79,7 +81,7 @@ router.post(SERVER_AUTH_PATHS.SIGNUP, (req, res, next) => {
 })
 
 // Login
-router.post(SERVER_AUTH_PATHS.LOGIN, (req, res, next) => {
+router.post(PATHS.LOGIN, (req, res, next) => {
     const { email, password } = req.body
 
     if (email === "" || password === "") {
@@ -117,7 +119,7 @@ router.post(SERVER_AUTH_PATHS.LOGIN, (req, res, next) => {
 })
 
 // Verify if user is logged in
-router.get(SERVER_AUTH_PATHS.LOGGED_IN, isAuthenticated, (req, res, next) => {
+router.get(PATHS.LOGGED_IN, isAuthenticated, (req, res, next) => {
     // @ts-expect-error
     console.log(`req.payload: ${req.payload}`)
     // @ts-expect-error
@@ -125,7 +127,7 @@ router.get(SERVER_AUTH_PATHS.LOGGED_IN, isAuthenticated, (req, res, next) => {
 })
 
 // Verify account
-router.put(SERVER_AUTH_PATHS.VERIFY, (req, res, next) => {
+router.put(PATHS.VERIFY, (req, res, next) => {
     const { id } = req.body
 
     UserModel.findByIdAndUpdate(id, { verified: true }, { new: true })
@@ -140,7 +142,7 @@ router.put(SERVER_AUTH_PATHS.VERIFY, (req, res, next) => {
 })
 
 // Forgot password
-router.post(SERVER_AUTH_PATHS.FORGOT_PASSWORD, (req, res, next) => {
+router.post(PATHS.FORGOT_PASSWORD, (req, res, next) => {
     const { email } = req.body
     const resetToken = getRandomString(20)
 
@@ -182,7 +184,7 @@ router.post(SERVER_AUTH_PATHS.FORGOT_PASSWORD, (req, res, next) => {
 })
 
 // Reset password
-router.put(SERVER_AUTH_PATHS.RESET_PASSWORD, (req, res, next) => {
+router.put(PATHS.RESET_PASSWORD, (req, res, next) => {
     const { password, resetToken, id } = req.body
 
     if (!passwordRegex.test(password)) {
@@ -193,8 +195,7 @@ router.put(SERVER_AUTH_PATHS.RESET_PASSWORD, (req, res, next) => {
 
     UserModel.findById(id)
         .then(foundUser => {
-            // @ts-expect-error
-            if (foundUser.resetToken !== resetToken) {
+            if (foundUser?.resetToken !== resetToken) {
                 return res.status(400).json({
                     message: COMMON_TEXTS.ERRORS.PROBLEM_RESET_PASSWORD,
                 })
