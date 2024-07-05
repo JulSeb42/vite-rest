@@ -1,14 +1,10 @@
 /*=============================================== Routes ===============================================*/
 
 // import { Navigate } from "react-router-dom"
-
 import { ProtectedRoute, AnonRoute, PATHS } from "routes"
-
 import { Homepage } from "pages/Homepage"
 import { NotFound } from "pages/NotFound"
-
 import { AllUsers, PublicProfile } from "pages/user"
-
 import {
     Signup,
     ThankYou,
@@ -19,24 +15,22 @@ import {
     ResetPassword,
     Goodbye,
 } from "pages/auth"
-
 import { MyAccount, EditAccount, EditPassword } from "pages/account"
-
 // prependImport
 
-type RouteType = {
+type Route = {
     path: string
     element: JSX.Element
 }
 
-const redirects: Array<RouteType> = [
+const redirects: Array<Route> = [
     // {
     //     path: "",
     //     element: <Navigate to="" />,
     // },
 ]
 
-export const routes: Array<RouteType> = [
+export const routes: Array<Route> = [
     { path: PATHS.ROOT, element: <Homepage /> },
     { path: "*", element: <NotFound /> },
 

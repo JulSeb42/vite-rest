@@ -1,7 +1,6 @@
 /*=============================================== ErrorMessage component ===============================================*/
 
 import { Alert } from "tsx-library-julseb"
-
 import type { ErrorMessage } from "types"
 
 export function ErrorMessage({ error }: ErrorMessageProps) {

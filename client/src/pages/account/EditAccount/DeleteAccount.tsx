@@ -2,14 +2,10 @@
 
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-
 import { useAuthContext } from "context"
 import { userService } from "api"
-
 import { DangerZone, ErrorMessage } from "components"
-
 import { PATHS } from "routes"
-
 import type { ErrorMessage as ErrorMessageType } from "types"
 
 export function DeleteAccount() {

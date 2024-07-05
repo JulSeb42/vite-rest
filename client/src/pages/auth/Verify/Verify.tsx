@@ -2,17 +2,14 @@
 
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-
 import { useAuthContext } from "context"
 import { authService } from "api"
-
 import {
     VerifySkeleton,
     NotLoggedIn,
     VerificationFailed,
     VerificationSuccess,
 } from "pages/auth/Verify/sections"
-
 import type { ErrorMessage } from "types"
 
 export function Verify() {

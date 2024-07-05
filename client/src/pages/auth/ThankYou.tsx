@@ -1,7 +1,6 @@
 /*=============================================== ThankYou ===============================================*/
 
 import { Text } from "tsx-library-julseb"
-
 import { Page } from "components"
 
 export function ThankYou() {

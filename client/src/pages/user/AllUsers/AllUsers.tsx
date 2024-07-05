@@ -1,7 +1,6 @@
 /*=============================================== AllUsers ===============================================*/
 
 import { Text } from "tsx-library-julseb"
-
 import { Page } from "components"
 import { UsersList } from "pages/user/AllUsers/UsersList"
 

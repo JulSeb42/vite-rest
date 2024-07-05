@@ -9,7 +9,6 @@ import {
 } from "react"
 import { authService } from "api"
 import type { AuthContextType } from "context/types"
-
 import type { User } from "types"
 
 export const AuthContext = createContext<AuthContextType>(null as any)

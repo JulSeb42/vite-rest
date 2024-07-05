@@ -2,11 +2,8 @@
 
 import { Text } from "tsx-library-julseb"
 import { Link } from "react-router-dom"
-
 import { useAuthContext } from "context"
-
 import { Page, UserHeader } from "components"
-
 import { PATHS } from "routes"
 
 export function MyAccount() {

@@ -9,7 +9,6 @@ import {
     SkeletonShine,
     getFirstName,
 } from "tsx-library-julseb"
-
 import type { UserHeaderProps } from "components/user/UserHeader/types"
 
 export function UserHeader({

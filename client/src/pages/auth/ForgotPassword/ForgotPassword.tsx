@@ -1,7 +1,6 @@
 /*=============================================== ForgotPassword ===============================================*/
 
 import { Text } from "tsx-library-julseb"
-
 import { Page } from "components"
 import { ForgotPasswordForm } from "pages/auth/ForgotPassword/ForgotPasswordForm"
 

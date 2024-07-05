@@ -2,10 +2,8 @@
 
 import { Text } from "tsx-library-julseb"
 import { Link } from "react-router-dom"
-
 import { Page } from "components"
 import { LoginForm } from "pages/auth/Login/LoginForm"
-
 import { PATHS } from "routes"
 
 export function Login() {

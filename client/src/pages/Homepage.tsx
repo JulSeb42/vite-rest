@@ -1,9 +1,7 @@
 /*=============================================== Homepage ===============================================*/
 
 import { Text } from "tsx-library-julseb"
-
 import { useAuthContext } from "context"
-
 import { Page } from "components"
 
 export function Homepage() {

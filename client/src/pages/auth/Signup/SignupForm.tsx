@@ -1,7 +1,6 @@
 /*=============================================== SignupForm ===============================================*/
 
-import { useState } from "react"
-import type { ChangeEvent, FormEvent } from "react"
+import { useState, type ChangeEvent, type FormEvent } from "react"
 import { useNavigate } from "react-router-dom"
 import { Form, Input, passwordRegex, getRandomAvatar } from "tsx-library-julseb"
 import type { ValidationTypes } from "tsx-library-julseb/types"

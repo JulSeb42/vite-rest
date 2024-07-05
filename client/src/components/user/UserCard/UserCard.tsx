@@ -1,11 +1,9 @@
 /*=============================================== UserCard component ===============================================*/
 
 import { Avatar, Text } from "tsx-library-julseb"
-
+import { PATHS } from "routes"
 import { StyledUserCard } from "components/user/UserCard/styles"
 import type { UserCardProps } from "components/user/UserCard/types"
-
-import { PATHS } from "routes"
 
 export function UserCard({ user }: UserCardProps) {
     return (

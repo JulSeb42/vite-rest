@@ -4,7 +4,6 @@ import { useContext } from "react"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { ThemeContext, ThemeProvider, PageLoading } from "tsx-library-julseb"
 import type { ThemeContextProps } from "tsx-library-julseb/types"
-
 import { routes } from "routes"
 
 export function App() {

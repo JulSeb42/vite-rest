@@ -1,15 +1,11 @@
 /*=============================================== ForgotPasswordForm ===============================================*/
 
-import { useState } from "react"
-import type { ChangeEvent, FormEvent } from "react"
+import { useState, type ChangeEvent, type FormEvent } from "react"
 import { Form, Input } from "tsx-library-julseb"
 import { useNavigate } from "react-router-dom"
-
 import { authService } from "api"
-
 import { ErrorMessage } from "components"
 import { PATHS } from "routes"
-
 import type { ErrorMessage as ErrorMessageType } from "types"
 
 export function ForgotPasswordForm() {

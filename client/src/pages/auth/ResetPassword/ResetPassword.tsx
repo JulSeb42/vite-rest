@@ -1,7 +1,6 @@
 /*=============================================== ResetPassword ===============================================*/
 
 import { Text } from "tsx-library-julseb"
-
 import { Page } from "components"
 import { ResetPasswordForm } from "pages/auth/ResetPassword/ResetPasswordForm"
 

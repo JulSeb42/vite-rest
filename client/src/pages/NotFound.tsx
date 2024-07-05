@@ -2,7 +2,6 @@
 
 import { Text } from "tsx-library-julseb"
 import { Link } from "react-router-dom"
-
 import { Page } from "components"
 import { PATHS } from "routes"
 

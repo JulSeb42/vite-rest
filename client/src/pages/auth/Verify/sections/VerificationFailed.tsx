@@ -1,9 +1,7 @@
 /*=============================================== VerificationFailed ===============================================*/
 
 import { Text } from "tsx-library-julseb"
-
 import { Page, ErrorMessage } from "components"
-
 import type { ErrorMessage as ErrorMessageType } from "types"
 
 export function VerificationFailed({ errorMessages }: VerificationFailedProps) {
