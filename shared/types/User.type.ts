@@ -10,3 +10,10 @@ export type User = {
     resetToken?: string
     avatar: string
 }
+
+export type EditAccountFormData = Pick<User, "fullName" | "avatar">
+
+export type EditPasswordFormData = {
+    oldPassword: string
+    newPassword: string
+}

@@ -2,7 +2,7 @@
 
 import { useState, type ChangeEvent, type FormEvent } from "react"
 import { useNavigate } from "react-router-dom"
-import { Form, Input } from "tsx-library-julseb"
+import { Button, Form, Input } from "tsx-library-julseb"
 import { useAuthContext } from "context"
 import { authService } from "api"
 import { ErrorMessage } from "components"
@@ -35,6 +35,21 @@ export function LoginForm() {
             .catch(err => setErrorMessage(err))
     }
 
+    const handleDemo = async () => {
+        const loginInputs = {
+            email: import.meta.env.VITE_JULIEN_EMAIL,
+            password: import.meta.env.VITE_JULIEN_PASSWORD,
+        }
+
+        await authService
+            .login(loginInputs)
+            .then(res => {
+                loginUser(res.data.authToken)
+                navigate(-1)
+            })
+            .catch(err => setErrorMessage(err))
+    }
+
     return (
         <>
             <Form onSubmit={handleSubmit} buttonPrimary="Log in">
@@ -57,6 +72,10 @@ export function LoginForm() {
             </Form>
 
             <ErrorMessage error={errorMessage} />
+
+            {import.meta.env.DEV && (
+                <Button onClick={handleDemo}>Demo account</Button>
+            )}
         </>
     )
 }

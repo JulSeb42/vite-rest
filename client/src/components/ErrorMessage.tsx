@@ -6,7 +6,15 @@ import type { ErrorMessage } from "types"
 export function ErrorMessage({ error }: ErrorMessageProps) {
     if (!error) return null
 
-    return <Alert color="danger">{error.response?.data.message}</Alert>
+    if (Array.isArray(error)) {
+        return error.map(err => <Alert color="danger">{err}</Alert>)
+    }
+
+    return (
+        <Alert color="danger">
+            {typeof error === "string" ? error : error?.response?.data?.message}
+        </Alert>
+    )
 }
 
 interface ErrorMessageProps {

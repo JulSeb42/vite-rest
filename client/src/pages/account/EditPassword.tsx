@@ -15,28 +15,46 @@ export function EditPassword() {
     const { user, setUser, setToken } = useAuthContext()
     const navigate = useNavigate()
 
-    const [password, setPassword] = useState("")
-    const [validation, setValidation] = useState<ValidationTypes>(undefined)
+    const [passwords, setPasswords] = useState({
+        oldPassword: "",
+        newPassword: "",
+    })
+    const [validation, setValidation] = useState<
+        | undefined
+        | { oldPassword?: ValidationTypes; newPassword?: ValidationTypes }
+    >(undefined)
     const [errorMessage, setErrorMessage] =
         useState<ErrorMessageType>(undefined)
 
     const handlePassword = (e: ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value)
+        const { id, value } = e.target
 
-        setValidation(
-            e.target.value.length > 0
-                ? passwordRegex.test(password)
-                    ? "passed"
-                    : "not-passed"
-                : undefined
-        )
+        setPasswords({ ...passwords, [id]: value })
+
+        setValidation({
+            ...validation,
+            [id]:
+                value.length > 0
+                    ? passwordRegex.test(value)
+                        ? "passed"
+                        : "not-passed"
+                    : undefined,
+        })
     }
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
+        if (!passwords.oldPassword || !passwords.newPassword) {
+            setValidation({
+                oldPassword: !passwords.oldPassword ? "not-passed" : undefined,
+                newPassword: !passwords.newPassword ? "not-passed" : undefined,
+            })
+            return
+        }
+
         userService
-            .editPassword(user?._id!, { password })
+            .editPassword(user?._id!, passwords)
             .then(res => {
                 setUser(res.data.user)
                 setToken(res.data.authToken)
@@ -55,22 +73,43 @@ export function EditPassword() {
                 buttonSecondary={{ text: "Cancel", to: PATHS.MY_ACCOUNT }}
             >
                 <Input
-                    id="password"
+                    id="oldPassword"
+                    password
+                    label="Old password"
+                    helperBottom={{
+                        text:
+                            validation?.oldPassword === "not-passed"
+                                ? COMMON_TEXTS.ERRORS.PASSWORD_NOT_VALID
+                                : undefined,
+                        icon:
+                            validation?.oldPassword === "not-passed"
+                                ? COMMON_TEXTS.ERRORS.ICON_PASSWORD_NOT_VALID
+                                : undefined,
+                        iconColor: "danger",
+                    }}
+                    validation={validation?.oldPassword}
+                    value={passwords.oldPassword}
+                    onChange={handlePassword}
+                    autoFocus
+                />
+                <Input
+                    id="newPassword"
                     password
                     label="New password"
                     helperBottom={{
-                        text: validation
-                            ? COMMON_TEXTS.ERRORS.PASSWORD_NOT_VALID
-                            : "",
+                        text:
+                            validation?.newPassword === "not-passed"
+                                ? COMMON_TEXTS.ERRORS.PASSWORD_NOT_VALID
+                                : undefined,
                         icon:
-                            validation &&
-                            COMMON_TEXTS.ERRORS.ICON_PASSWORD_NOT_VALID,
+                            validation?.newPassword === "not-passed"
+                                ? COMMON_TEXTS.ERRORS.ICON_PASSWORD_NOT_VALID
+                                : undefined,
                         iconColor: "danger",
                     }}
-                    validation={validation}
-                    value={password}
+                    validation={validation?.newPassword}
+                    value={passwords.newPassword}
                     onChange={handlePassword}
-                    autoFocus
                 />
             </Form>
 

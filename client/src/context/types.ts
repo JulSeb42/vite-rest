@@ -4,7 +4,7 @@ import type { Dispatch, SetStateAction } from "react"
 import type { User } from "types"
 
 export type AuthContextType = {
-    isLoggedIn: boolean
+    isLoggedIn: boolean | null
     isLoading: boolean
     user: User | null
     setUser: Dispatch<SetStateAction<User | null>>

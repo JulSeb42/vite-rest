@@ -28,5 +28,9 @@ export const COMMON_TEXTS = {
             "There was a problem trying to reset your password.",
         ROUTE_NOT_EXIST: "This route does not exist",
         SERVER_ERROR: "Internal server error. Check the server console",
+        VERIFY_TOKEN_NOT_MATCH:
+            "The verify token does not match with the one from your account.",
+        ID_NOT_VALID: "Your ID is not valid.",
+        OLD_PASSWORD_WRONG: "The old password is wrong.",
     },
 }

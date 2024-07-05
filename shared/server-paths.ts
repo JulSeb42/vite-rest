@@ -15,7 +15,13 @@ export const SERVER_PATHS = {
         SIGNUP: "/signup",
         LOGIN: "/login",
         LOGGED_IN: "/loggedin",
-        VERIFY: "/verify",
+        VERIFY: (args = [":id", ":token"]) => {
+            const joinedArgs = args
+                .map(arg => (arg[0] === "/" ? arg.replace("/", "") : arg))
+                .join("/")
+
+            return `/verify/${joinedArgs}`
+        },
         FORGOT_PASSWORD: "/forgot-password",
         RESET_PASSWORD: "/reset-password",
     },

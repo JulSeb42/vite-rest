@@ -15,7 +15,7 @@ export function EditAccountForm() {
     const { user, setUser, setToken } = useAuthContext()
 
     const [inputs, setInputs] = useState({
-        fullName: user?.fullName,
+        fullName: user?.fullName || "",
     })
     const [avatar, setAvatar] = useState(user?.avatar!)
     const [isLoading, setIsLoading] = useState(false)
@@ -28,13 +28,11 @@ export function EditAccountForm() {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        const requestBody = {
-            ...inputs,
-            avatar,
-        }
-
         userService
-            .editAccount(user?._id!, requestBody)
+            .editAccount(user?._id!, {
+                ...inputs,
+                avatar,
+            })
             .then(res => {
                 setUser(res.data.user)
                 setToken(res.data.authToken)

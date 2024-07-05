@@ -9,6 +9,7 @@ import { authService } from "api"
 import { ErrorMessage } from "components"
 import { PATHS } from "routes"
 import type { ErrorMessage as ErrorMessageType } from "types"
+import { COMMON_TEXTS } from "../../../../../shared"
 
 export function SignupForm() {
     const { loginUser } = useAuthContext()
@@ -43,6 +44,11 @@ export function SignupForm() {
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+
+        if (!passwordRegex.test(inputs.password)) {
+            setValidationPassword("not-passed")
+            return
+        }
 
         await authService
             .signup({
@@ -81,6 +87,12 @@ export function SignupForm() {
                     onChange={handleInputs}
                     password
                     validation={validationPassword}
+                    helperBottom={{
+                        text:
+                            validationPassword === "not-passed"
+                                ? COMMON_TEXTS.ERRORS.PASSWORD_NOT_VALID
+                                : undefined,
+                    }}
                 />
             </Form>
 

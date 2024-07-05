@@ -17,25 +17,45 @@ export function Verify() {
     const { token, id } = useParams<{ id: string; token: string }>()
 
     const [isLoading, setIsLoading] = useState<boolean>(true)
-    const [errorMessage, setErrorMessage] = useState<ErrorMessage>(undefined)
+    const [errorMessage, setErrorMessage] = useState<ErrorMessage | string>(
+        undefined
+    )
 
     useEffect(() => {
-        if (isLoading) {
-            if (isLoggedIn && user?._id === id && user?.verifyToken === token) {
+        if (isLoggedIn !== null) {
+            console.log("hello")
+            if (id && token && isLoggedIn) {
+                console.log("Start service")
                 authService
-                    .verify({ id })
+                    .verify(id, token)
                     .then(res => {
                         setUser(res.data.user)
                         setToken(res.data.authToken)
                         setIsLoading(false)
                     })
                     .catch(err => {
+                        console.log(err)
                         setErrorMessage(err)
                         setIsLoading(false)
                     })
+            } else if (!id || !token) {
+                if (!id)
+                    setErrorMessage([
+                        ...(errorMessage as Array<string>),
+                        "ID is missing",
+                    ])
+                if (!token)
+                    setErrorMessage([
+                        ...(errorMessage as Array<string>),
+                        "Token is missing",
+                    ])
+                setIsLoading(false)
+            } else if (!isLoggedIn) {
+                setErrorMessage("You are not logged in.")
+                setIsLoading(false)
             }
         }
-    }, [id, isLoading, isLoggedIn, setToken, setUser, token, user])
+    }, [id, isLoggedIn, isLoading, setToken, setUser, token, user])
 
     if (isLoading) return <VerifySkeleton />
 

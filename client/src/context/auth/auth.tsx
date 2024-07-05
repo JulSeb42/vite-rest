@@ -14,7 +14,7 @@ import type { User } from "types"
 export const AuthContext = createContext<AuthContextType>(null as any)
 
 export function AuthProviderWrapper({ children }: AuthProviderWrapperProps) {
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [user, setUser] = useState<User | null>(null)
 

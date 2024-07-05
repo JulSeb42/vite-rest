@@ -2,12 +2,12 @@
 
 import { SERVER_PATHS } from "shared"
 
-type ParamFn = (param: string) => string
+type ParamFn = (param: string | Array<string>) => string
 
 export function generateServerRoute(
     route: keyof typeof SERVER_PATHS,
     path: string,
-    param?: string
+    param?: string | Array<string>
 ) {
     const PATHS = SERVER_PATHS[route]
     const root = PATHS.ROOT
@@ -19,6 +19,8 @@ export function generateServerRoute(
             : (foundRoute as unknown as ParamFn)
 
     if (param && routeFn) {
+        // const allParams = typeof param !== "string" ? param.join("/") : param
+
         return `${root}${routeFn(param)}`
     }
 

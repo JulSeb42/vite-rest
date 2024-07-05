@@ -3,7 +3,12 @@
 import { http } from "api"
 import { SERVER_PATHS } from "shared"
 import { generateServerRoute } from "utils"
-import type { ApiResponse, User } from "types"
+import type {
+    ApiResponse,
+    User,
+    EditAccountFormData,
+    EditPasswordFormData,
+} from "types"
 
 const { USERS: PATHS } = SERVER_PATHS
 
@@ -21,16 +26,16 @@ class UserService {
         return await http.get(generateRoute("USER", id))
     }
 
-    async editAccount(id: string, data: any) {
+    async editAccount(id: string, data: EditAccountFormData) {
         return await http.put(generateRoute("EDIT_ACCOUNT", id), data)
     }
 
-    editPassword(id: string, data: any) {
-        return http.put(generateRoute("EDIT_PASSWORD", id), data)
+    async editPassword(id: string, data: EditPasswordFormData) {
+        return await http.put(generateRoute("EDIT_PASSWORD", id), data)
     }
 
-    deleteAccount(id: string) {
-        return http.delete(generateRoute("DELETE_ACCOUNT", id))
+    async deleteAccount(id: string) {
+        return await http.delete(generateRoute("DELETE_ACCOUNT", id))
     }
 }
 
