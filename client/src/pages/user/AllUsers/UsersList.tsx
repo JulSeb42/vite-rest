@@ -2,11 +2,8 @@
 
 import type { AxiosResponse } from "axios"
 import { useFetch, Text, Grid, generateNumbers } from "tsx-library-julseb"
-
 import { userService } from "api"
-
 import { UserCard, UserCardSkeleton } from "components"
-
 import type { User } from "types"
 
 export function UsersList() {
@@ -17,7 +14,7 @@ export function UsersList() {
 
     if (loading || (!response && !error)) return <UsersListSkeleton />
 
-    if (error) return <Text>Error while fetching users: {error}</Text>
+    if (error) return <Text>Error while fetching users: {error.message}</Text>
 
     if (!users?.length) return <Text>No user yet.</Text>
 

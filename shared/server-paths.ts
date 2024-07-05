@@ -12,27 +12,24 @@ const SERVER_PATH_ROOTS = {
 export const SERVER_PATHS = {
     AUTH: {
         ROOT: SERVER_PATH_ROOTS.AUTH,
-        SIGNUP: `${SERVER_PATH_ROOTS}/signup`,
-        LOGIN: `${SERVER_PATH_ROOTS}/login`,
-        LOGGED_IN: `${SERVER_PATH_ROOTS}/loggedin`,
-        VERIFY: `${SERVER_PATH_ROOTS}/verify`,
-        FORGOT_PASSWORD: `${SERVER_PATH_ROOTS}/forgot-password`,
-        RESET_PASSWORD: `${SERVER_PATH_ROOTS}/reset-password`,
+        SIGNUP: "/signup",
+        LOGIN: "/login",
+        LOGGED_IN: "/loggedin",
+        VERIFY: "/verify",
+        FORGOT_PASSWORD: "/forgot-password",
+        RESET_PASSWORD: "/reset-password",
     },
     UPLOADER: {
         ROOT: SERVER_PATH_ROOTS.UPLOADER,
-        UPLOAD_PICTURE: `${SERVER_PATH_ROOTS.UPLOADER}/upload-picture`,
+        UPLOAD_PICTURE: "/upload-picture",
     },
     USERS: {
         ROOT: SERVER_PATH_ROOTS.USERS,
-        ALL_USERS: `${SERVER_PATH_ROOTS.USERS}/all-users`,
-        USER: (id = ":id") => `${SERVER_PATH_ROOTS.USERS}/user/${id}`,
-        EDIT_ACCOUNT: (id = ":id") =>
-            `${SERVER_PATH_ROOTS.USERS}/edit-account/${id}`,
-        EDIT_PASSWORD: (id = ":id") =>
-            `${SERVER_PATH_ROOTS.USERS}/edit-password/${id}`,
-        DELETE_ACCOUNT: (id = ":id") =>
-            `${SERVER_PATH_ROOTS.USERS}/delete-account/${id}`,
+        ALL_USERS: "/all-users",
+        USER: (id = ":id") => `/user/${id}`,
+        EDIT_ACCOUNT: (id = ":id") => `/edit-account/${id}`,
+        EDIT_PASSWORD: (id = ":id") => `/edit-password/${id}`,
+        DELETE_ACCOUNT: (id = ":id") => `/delete-account/${id}`,
     },
     // prependServerPath
 }

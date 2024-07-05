@@ -2,32 +2,36 @@
 
 import { http } from "api"
 import { SERVER_PATHS } from "shared"
+import { generateServerRoute } from "utils"
 
 const { AUTH: PATHS } = SERVER_PATHS
 
+const generateRoute = (route: Exclude<keyof typeof PATHS, "ROOT">) =>
+    generateServerRoute("AUTH", route)
+
 class AuthService {
-    signup(data: any) {
-        return http.post(PATHS.SIGNUP, data)
+    async signup(data: any) {
+        return await http.post(generateRoute("SIGNUP"), data)
     }
 
-    login(data: any) {
-        return http.post(PATHS.LOGIN, data)
+    async login(data: any) {
+        return await http.post(generateRoute("LOGIN"), data)
     }
 
-    loggedIn(data: any) {
-        return http.get(PATHS.LOGGED_IN, data)
+    async loggedIn(data: any) {
+        return await http.get(generateRoute("LOGGED_IN"), data)
     }
 
-    verify(data: any) {
-        return http.put(PATHS.VERIFY, data)
+    async verify(data: any) {
+        return await http.put(generateRoute("VERIFY"), data)
     }
 
-    forgotPassword(data: any) {
-        return http.post(PATHS.FORGOT_PASSWORD, data)
+    async forgotPassword(data: any) {
+        return await http.post(generateRoute("FORGOT_PASSWORD"), data)
     }
 
-    resetPassword(data: any) {
-        return http.put(PATHS.RESET_PASSWORD, data)
+    async resetPassword(data: any) {
+        return await http.put(generateRoute("RESET_PASSWORD"), data)
     }
 }
 

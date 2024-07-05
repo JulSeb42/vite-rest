@@ -48,7 +48,7 @@ const generateRoute = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                 type: "modify",
                 path: "../shared/server-paths.ts",
                 template:
-                    '{{ constantCase name }}: {\n        ROOT: SERVER_PATH_ROOTS.{{ constantCase name }},\n        ALL_{{ constantCase name }}S: `${SERVER_PATH_ROOTS.{{ constantCase name }} }/all-{{ kebabCase name }}s`,\n        GET_{{ constantCase name }}: (id = ":id") => `${SERVER_PATH_ROOTS.{{ constantCase name }} }/{{ kebabCase name }}/${id}`,\n    },\n$1',
+                    '{{ constantCase name }}: {\n        ROOT: SERVER_PATH_ROOTS.{{ constantCase name }},\n        ALL_{{ constantCase name }}S: "/all-{{ kebabCase name }}s",\n        GET_{{ constantCase name }}: (id = ":id") => `/{{ kebabCase name }}/${id}`,\n    },\n$1',
                 pattern: /(\/\/ prependServerPath)/g,
             },
             {
