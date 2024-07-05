@@ -22,10 +22,8 @@ export function Verify() {
     )
 
     useEffect(() => {
-        if (isLoggedIn !== null) {
-            console.log("hello")
+        if (isLoggedIn !== null && isLoading) {
             if (id && token && isLoggedIn) {
-                console.log("Start service")
                 authService
                     .verify(id, token)
                     .then(res => {
