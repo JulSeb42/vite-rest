@@ -19,8 +19,6 @@ export function generateServerRoute(
             : (foundRoute as unknown as ParamFn)
 
     if (param && routeFn) {
-        // const allParams = typeof param !== "string" ? param.join("/") : param
-
         return `${root}${routeFn(param)}`
     }
 

@@ -8,7 +8,7 @@ export function Helmet({ title, description, keywords, cover }: HelmetProps) {
         <Head
             title={`${title} | ${SITE_DATA.NAME}`}
             description={description}
-            keywords={[SITE_DATA.KEYWORDS, keywords]}
+            keywords={[...SITE_DATA.KEYWORDS, keywords]}
             siteName={SITE_DATA.NAME}
             favicon={SITE_DATA.FAVICON}
             author={SITE_DATA.AUTHOR}

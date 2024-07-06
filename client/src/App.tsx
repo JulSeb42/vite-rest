@@ -1,13 +1,12 @@
 /*=============================================== App ===============================================*/
 
-import { useContext } from "react"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import { ThemeContext, ThemeProvider, PageLoading } from "tsx-library-julseb"
-import type { ThemeContextProps } from "tsx-library-julseb/types"
+import { ThemeProvider, PageLoading } from "tsx-library-julseb"
 import { routes } from "routes"
+import { useThemeContext } from "context"
 
 export function App() {
-    const { theme } = useContext(ThemeContext) as ThemeContextProps
+    const { theme } = useThemeContext()
 
     return (
         <ThemeProvider theme={theme}>
