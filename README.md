@@ -4,7 +4,7 @@ A boilerplate for fullstack projects written in TypeScript, React, Express and M
 
 ## Install project
 
-ename the file `template.env` to `.env`, and replace the values with your email, password, etc. Do the same thing in the `client` folder.
+Rename the file `template.env` to `.env`, and replace the values with your email, password, etc. Do the same thing in the `client` folder.
 
 Then run `npm install` at the root of the project. Since we're using [Concurrently](https://www.npmjs.com/package/concurrently) this will install packages for backend and frontend.
 
