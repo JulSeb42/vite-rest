@@ -1,7 +1,7 @@
 /*=============================================== Site data ===============================================*/
 
 export const SITE_DATA = {
-    NAME: "Vite Rest App",
+    NAME: "vite-rest",
     FAVICON: "/vite.svg",
     EMAIL: "",
     AUTHOR: "",
